@@ -36,17 +36,17 @@ RSpec.configure do |c|
   c.hiera_config = File.join(fixture_path,'hieradata','hiera.yaml')
 
   c.before(:all) do
-# Add fixture lib dirs to LOAD_PATH. Work-around for PUP-3336
-if Puppet.version < "4.0.0"
-  Dir["#{fixture_path}/modules/*/lib"].entries.each do |lib_dir|
-    $LOAD_PATH << lib_dir
-  end
-end
+    # Add fixture lib dirs to LOAD_PATH. Work-around for PUP-3336
+    if Puppet.version < "4.0.0"
+      Dir["#{fixture_path}/modules/*/lib"].entries.each do |lib_dir|
+        $LOAD_PATH << lib_dir
+      end
+    end
 
     data = YAML.load(default_hiera_config)
     data[:yaml][:datadir] = File.join(fixture_path, 'hieradata')
     File.open(c.hiera_config, 'w') do |f|
-      f.write data.to_yaml
+      f.write(data.to_yaml)
     end
   end
 end
