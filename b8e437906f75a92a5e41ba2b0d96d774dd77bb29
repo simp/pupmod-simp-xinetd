@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_7a714b75",
+        "filename": ".travis.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-19T19:53:51Z",
+      "side": 1,
+      "message": "I suggest swapping these.  \u0027rake validate\u0027 will identify syntax errors that would derail a \u0027rake lint\u0027 run.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 33
+      },
+      "revId": "b8e437906f75a92a5e41ba2b0d96d774dd77bb29",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_ba6753b6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-19T19:53:51Z",
+      "side": 1,
+      "message": "Please wrap lines in the body of commit messages at 72 characters.",
+      "range": {
+        "startLine": 9,
+        "startChar": 72,
+        "endLine": 9,
+        "endChar": 120
+      },
+      "revId": "b8e437906f75a92a5e41ba2b0d96d774dd77bb29",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_fa0c7bef",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-19T19:53:51Z",
+      "side": 1,
+      "message": "Nice!",
+      "revId": "b8e437906f75a92a5e41ba2b0d96d774dd77bb29",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_3aafc395",
+        "filename": "manifests/config/xinetd_service.pp",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-19T19:53:51Z",
+      "side": 1,
+      "message": "Validations should be at the top of the define (functions are parser-order dependent).",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 81
+      },
+      "revId": "b8e437906f75a92a5e41ba2b0d96d774dd77bb29",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_fa339ba8",
+        "filename": "manifests/firewall/xinetd_service.pp",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-19T19:53:51Z",
+      "side": 1,
+      "message": "Suggestion: validate_re() on $protocol for \u0027tcp\u0027 or \u0027udp\u0027",
+      "revId": "b8e437906f75a92a5e41ba2b0d96d774dd77bb29",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "facab960_da2ed742",
+        "filename": "manifests/firewall/xinetd_service.pp",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-19T19:53:51Z",
+      "side": 1,
+      "message": "Should this do something?",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 27,
+        "endChar": 5
+      },
+      "revId": "b8e437906f75a92a5e41ba2b0d96d774dd77bb29",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
