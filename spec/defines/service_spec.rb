@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'xinetd::service' do
+describe 'xinetd::config::xinetd_service' do
 
   let(:title) { 'tftp' }
 

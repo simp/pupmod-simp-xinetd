@@ -11,21 +11,20 @@ class xinetd::config {
   include '::xinetd'
 
   file { '/etc/xinetd.conf':
-    owner    => 'root',
-    group    => 'root',
-    mode     => '0600',
-    content  => template('xinetd/xinetd.conf.erb'),
-    notify   => [ Service['xinetd'] ],
-    require  => Package['xinetd']
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
+    content => template('xinetd/xinetd.conf.erb'),
+    notify  => [ Service['xinetd'] ],
+    require => Package['xinetd']
   }
 
   file { '/etc/xinetd.d':
     ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
-    mode => '0640',
+    mode    => '0640',
     recurse => true,
     require => Package['xinetd']
   }
-
 }

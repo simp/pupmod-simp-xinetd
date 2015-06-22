@@ -45,6 +45,9 @@ RSpec.configure do |c|
 
     data = YAML.load(default_hiera_config)
     data[:yaml][:datadir] = File.join(fixture_path, 'hieradata')
+    if ! Dir.exist?(File.join(fixture_path, 'hieradata')) 
+      Dir.mkdir(File.join(fixture_path, 'hieradata'))
+    end
     File.open(c.hiera_config, 'w') do |f|
       f.write(data.to_yaml)
     end
