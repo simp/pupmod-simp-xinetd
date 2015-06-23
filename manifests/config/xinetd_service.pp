@@ -119,7 +119,7 @@ define xinetd::config::xinetd_service (
   }
 
   if ::use_simp_firewall or hiera('use_simp_firewall') {
-    xinetd::firewall::xinetd_service { "$name":
+    xinetd::firewall::xinetd_service { '$name':
       protocol  => $protocol,
       only_from => $only_from,
       port      => $port
