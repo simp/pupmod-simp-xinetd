@@ -8,8 +8,8 @@ rvm:
     - 2.2.1
 install: bundle install
 script:
-    - 'bundle exec rake lint'
     - 'bundle exec rake validate'
+    - 'bundle exec rake lint'
     - 'bundle exec rake spec'
 matrix:
     allow_failures:

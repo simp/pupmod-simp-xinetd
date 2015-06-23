@@ -1,7 +1,7 @@
-# == Define xinetd::service
+# == Define xinetd::config::xinetd_service
 #
 # Configure the xinetd service
-# xinetd::config::inetd_service service refers to an xinetd-managed service, not the xinetd ::service itself.
+# xinetd::config::xinetd_service service refers to an xinetd-managed service, not the xinetd ::service itself.
 #
 # == Parameters
 #
@@ -13,7 +13,8 @@
 #
 # == Authors
 #
-# Trevor Vaughan <tvaughan@onyxpoint.com>
+# Trevor Vaughan <mailto:tvaughan@onyxpoint.com>
+# Nick Miller <mailto:nick.miller@onyxpoint.com>
 #
 define xinetd::config::xinetd_service (
     $server,
@@ -65,22 +66,6 @@ define xinetd::config::xinetd_service (
 ) {
     include 'rsync'
 
-  file { "/etc/xinetd.d/$name":
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
-    content => template('xinetd/xinetd.service.erb'),
-    notify  => Service['xinetd']
-  }
-
-  if ::use_simp_firewall or hiera('use_simp_firewall') {
-    xinetd::firewall::xinetd_service { "$name":
-      protocol  => $protocol,
-      only_from => $only_from,
-      port      => $port
-    }
-  }
-
   validate_string($server)
   validate_integer($port)
   validate_string($protocol)
@@ -124,4 +109,21 @@ define xinetd::config::xinetd_service (
   if $rlimit_rss != 'nil' { validate_re($rlimit_rss, '^((\d+)|(UNLIMITED))$') }
   if $rlimit_stack != 'nil' { validate_re($rlimit_stack, '^((\d+)|(UNLIMITED))$') }
   if $deny_time != 'nil' { validate_re($deny_time, '^((\d+)|(FOREVER|NEVER))$') }
+
+  file { "/etc/xinetd.d/$name":
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0640',
+    content => template('xinetd/xinetd.service.erb'),
+    notify  => Service['xinetd']
+  }
+
+  if ::use_simp_firewall or hiera('use_simp_firewall') {
+    xinetd::firewall::xinetd_service { '$name':
+      protocol  => $protocol,
+      only_from => $only_from,
+      port      => $port
+    }
+  }
+
 }

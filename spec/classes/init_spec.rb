@@ -16,16 +16,16 @@ describe 'xinetd' do
     should contain_file('/etc/xinetd.conf').with({
       'owner' => 'root',
       'group' => 'root',
-      'mode' => '0600',
+      'mode'  => '0600',
     })
   end
 
   it do
     should contain_file('/etc/xinetd.d').with({
-      'ensure' => 'directory',
-      'owner' => 'root',
-      'group' => 'root',
-      'mode' => '0640',
+      'ensure'  => 'directory',
+      'owner'   => 'root',
+      'group'   => 'root',
+      'mode'    => '0640',
       'recurse' => 'true'
     })
   end
