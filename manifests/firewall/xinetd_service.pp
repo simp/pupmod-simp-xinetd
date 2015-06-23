@@ -17,7 +17,8 @@
 define xinetd::firewall::xinetd_service (
   $protocol,
   $port,
-  $only_from = 'nil'
+  $only_from = 'nil',
+  $libwrap_name = 'nil'
 ) {
 
   validate_re($protocol, ['tcp', 'udp'])
@@ -42,6 +43,21 @@ define xinetd::firewall::xinetd_service (
     # It is here to satisfy puppet-lint
     default:  {
       notify { 'error': message => 'Protocol was not of a supported type!' }
+    }
+  }
+
+  if defined('tcpwrappers') and defined(Class['tcpwrappers']) {
+    case $libwrap_name {
+      'nil':  {
+        tcpwrappers::allow { $name:
+          pattern => $only_from
+        }
+      }
+      default:  {
+        tcpwrappers::allow { $libwrap_name:
+          pattern => $only_from
+        }
+      }
     }
   }
 }

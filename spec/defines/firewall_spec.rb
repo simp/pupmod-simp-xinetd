@@ -11,7 +11,7 @@ describe 'xinetd::firewall::xinetd_service' do
     #  :x_wait => 'yes',
     #  :socket_type => 'dgram',
      :only_from => '127.0.0.1',
-    #  :libwrap_name => 'in.tftpd'
+     :libwrap_name => 'in.tftpd'
      } }
 
   base_facts = {
@@ -34,8 +34,9 @@ describe 'xinetd::firewall::xinetd_service' do
   end
 
   context 'with protocol => tcp and libwrap_name => nil' do
+    
     let(:params) { {
-      # :server => '/usr/sbin/in.tftpd', 
+      # :server => '/usr/sbin/in.tftpd',
       # :x_wait => 'yes',
       # :socket_type => 'dgram',
       :protocol => 'tcp',
