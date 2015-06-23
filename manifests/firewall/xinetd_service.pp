@@ -24,7 +24,7 @@ define xinetd::firewall::xinetd_service (
   validate_re($protocol, ['tcp', 'udp'])
   validate_integer($port)
 
-  case $protocol or hiera('protocol') {
+  case $protocol {
     'tcp':  {
       iptables::add_tcp_stateful_listen { "allow_$name":
         order       => '11',
