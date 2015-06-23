@@ -1,7 +1,8 @@
 # == Define xinetd::firewall::xinetd_service
 #
 # Configure an xinetd service
-# xinetd::firewall::inetd_service service refers to an xinetd-managed service, not the xinetd ::service itself.
+# xinetd::firewall::xinetd_service service refers to an xinetd-managed service,
+# not the xinetd ::service itself.
 #
 # == Parameters
 #

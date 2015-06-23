@@ -19,35 +19,4 @@ describe 'xinetd::config::xinetd_service' do
     })
   end
 
-  it do
-    should contain_iptables__add_udp_listen('allow_tftp').with({
-      'order' => '11',
-      'client_nets' => '127.0.0.1',
-      'dports' => '69'
-    })
-  end
-
-  it do
-    should contain_tcpwrappers__allow('in.tftpd').with({
-      'pattern' => '127.0.0.1'
-    })
-  end
-
-  context 'with protocol => tcp and libwrap_name => nil' do
-    let(:params) { {:server => '/usr/sbin/in.tftpd', :x_wait => 'yes', :socket_type => 'dgram', :protocol => 'tcp', :only_from => '127.0.0.1', :port => '70'} }
-
-    it do
-      should contain_iptables__add_tcp_stateful_listen('allow_tftp').with({
-        'order' => '11',
-        'client_nets' => '127.0.0.1',
-        'dports' => '70'
-      })
-    end
-
-    it do
-      should contain_tcpwrappers__allow('tftp').with({
-        'pattern' => '127.0.0.1'
-      })
-    end
-  end
 end

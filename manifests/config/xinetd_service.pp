@@ -1,7 +1,7 @@
 # == Define xinetd::config::xinetd_service
 #
-# Configure an xinetd service
-# xinetd::config::inetd_service service refers to an xinetd-managed service, not the xinetd ::service itself.
+# Configure the xinetd service
+# xinetd::config::xinetd_service service refers to an xinetd-managed service, not the xinetd ::service itself.
 #
 # == Parameters
 #
