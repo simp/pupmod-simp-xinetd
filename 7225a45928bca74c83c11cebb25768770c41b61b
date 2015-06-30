@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_1c4e04c2",
+        "filename": "build/pupmod-xinetd.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-30T05:08:32Z",
+      "side": 1,
+      "message": "If the module has been updated, the appropriate semver (or release) number should get bumped.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 10
+      },
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_7ccc7036",
+        "filename": "build/pupmod-xinetd.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-30T05:08:32Z",
+      "side": 1,
+      "message": "The RPM changelog should include any significant changes.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 10
+      },
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_9cd134d0",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-30T05:08:32Z",
+      "side": 1,
+      "message": "Doh, trailing whitespace!",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 4
+      },
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_bcd6f8c3",
+        "filename": "spec/spec_helper.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-06-30T05:08:32Z",
+      "side": 1,
+      "message": "Trailing whitespace",
+      "range": {
+        "startLine": 48,
+        "startChar": 57,
+        "endLine": 48,
+        "endChar": 58
+      },
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
