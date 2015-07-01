@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9ad9bd40_b7828efe",
+        "filename": ".travis.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "I think this needs to be updated to the latest travis.yml from the new skeleton.",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad9bd40_1c4e04c2",
         "filename": "build/pupmod-xinetd.spec",
         "patchSetId": 3
@@ -42,6 +59,160 @@
         "endLine": 53,
         "endChar": 10
       },
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_f77b3627",
+        "filename": "build/pupmod-xinetd.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "The Changelog should be updated if you many any change that would require the user to perform an action on their system.\n\nIn this case, this is a large enough change that this should probably be bumped all the way to version 3.0.0-0.",
+      "parentUuid": "9ad9bd40_7ccc7036",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_17797a2f",
+        "filename": "lib/puppet/parser/functions/validate_log_type.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "This should either go in \u0027common\u0027 (I think it\u0027s generic enough), or it should be made completely unique to the xinetd namespace.\n\nI would suggest validate_xinetd_log_type if you keep it here.",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_37767e3f",
+        "filename": "manifests/config.pp",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "I think this was the previous default, but we changed over to using empty strings so that validation was cleaner.\n\nI would change the \u0027nil\u0027 values to \u0027\u0027. and then  do a if !empty($var) in the validation sections.\n\nCheck the templates to make sure we\u0027re not checking for \u0027nil\u0027 there and use if @var.empty? or the like.",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_5773024d",
+        "filename": "manifests/config/xinetd_service.pp",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "Same thing with the \u0027nil\u0027 values here.",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_9794aa38",
+        "filename": "manifests/config/xinetd_service.pp",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "This bit should be collapsed into the base class.\n\nYou will have to \u0027include ::xinetd\u0027 at the top of the define when you do this.\n\nHowever, this makes everything a nice consistent pattern.",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_b799ae70",
+        "filename": "manifests/firewall/xinetd_service.pp",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "TCPWrappers should be broken out of firewall since they are two distinct subsystems that may, or may not, be in use together.",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_d79e3256",
+        "filename": "manifests/init.pp",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "Dig in the globals here:\n\nuse_iptables\nuse_tcpwrappers\netc...",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_77880623",
+        "filename": "manifests/install.pp",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "This should be:\n\ninherits ::xinetd",
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_978d8a34",
+        "filename": "manifests/install.pp",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1004834
+      },
+      "writtenOn": "2015-07-01T03:11:33Z",
+      "side": 1,
+      "message": "Don\u0027t include if you inherit.",
       "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
