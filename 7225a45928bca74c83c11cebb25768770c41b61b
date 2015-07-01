@@ -100,6 +100,29 @@
     },
     {
       "key": {
+        "uuid": "9ad9bd40_17a09a8f",
+        "filename": "lib/puppet/parser/functions/validate_log_type.rb",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-01T03:32:40Z",
+      "side": 1,
+      "message": "The tight coupling to xinted.conf makes a strong case for renaming the function to the more module-specific \"validate_xinetd_log_type\"",
+      "range": {
+        "startLine": 3,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 31
+      },
+      "revId": "7225a45928bca74c83c11cebb25768770c41b61b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ad9bd40_37767e3f",
         "filename": "manifests/config.pp",
         "patchSetId": 3
