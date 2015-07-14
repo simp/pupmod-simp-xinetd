@@ -1,77 +1,77 @@
 defaults
 {
-<% if !@log_type.eql?('nil') then -%>
+<% if !@log_type.empty? then -%>
   log_type       = <%= @log_type %>
 <% end -%>
-<% if !@x_bind.eql?('nil') then -%>
+<% if !@x_bind.empty? then -%>
   bind           = <%= @x_bind %>
 <% end -%>
-<% if !@per_source.eql?('nil') then -%>
+<% if !@per_source.empty? then -%>
   per_source     = <%= @per_source %>
 <% end -%>
-<% if !@x_umask.eql?('nil') then -%>
+<% if !@x_umask.empty? then -%>
   umask          = <%= @x_umask %>
 <% end -%>
-<% if !@log_on_success.eql?('nil') then -%>
+<% if !@log_on_success.empty? then -%>
   log_on_success = <%= @log_on_success %>
 <% end -%>
-<% if !@log_on_failure.eql?('nil') then -%>
+<% if !@log_on_failure.empty? then -%>
   log_on_failure = <%= @log_on_failure %>
 <% end -%>
-<% if !@only_from.eql?('nil') then -%>
+<% if !@only_from.empty? then -%>
   only_from      = <%
-        lfrom = Array.new
-        @only_from.flatten.each do |ptn|
-            if ptn =~ /(^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$/
-                laddr = $1
-                ddq = $2
-                a,b,c,d = ddq.split('.').map { |x| x.to_i }
-                count = 0
-                count += a & 1 and a >>= 1 until a == 0
-                count += b & 1 and b >>= 1 until b == 0
-                count += c & 1 and c >>= 1 until c == 0
-                count += d & 1 and d >>= 1 until d == 0
-                lfrom.push("#{laddr}/#{count}")
-            else
-                lfrom.push(ptn)
-            end
-        end -%>
+    lfrom = Array.new
+    @only_from.flatten.each do |ptn|
+      if ptn =~ /(^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$/
+        laddr = $1
+        ddq = $2
+        a,b,c,d = ddq.split('.').map { |x| x.to_i }
+        count = 0
+        count += a & 1 and a >>= 1 until a == 0
+        count += b & 1 and b >>= 1 until b == 0
+        count += c & 1 and c >>= 1 until c == 0
+        count += d & 1 and d >>= 1 until d == 0
+        lfrom.push("#{laddr}/#{count}")
+      else
+        lfrom.push(ptn)
+      end
+    end -%>
 <%= lfrom.join(' ') %>
 <% end -%>
-<% if !@no_access.eql?('nil') then -%>
+<% if !@no_access.empty? then -%>
   no_access      = <%= @no_access %>
 <% end -%>
-<% if !@passenv.eql?('nil') then -%>
+<% if !@passenv.empty? then -%>
   passenv        = <%= @passenv %>
 <% end -%>
-<% if !@instances.eql?('nil') then -%>
+<% if !@instances.empty? then -%>
   instances      = <%= @instances %>
 <% end -%>
-<% if !@disabled.eql?('nil') then -%>
+<% if !@disabled.empty? then -%>
   disabled       = <%= @disabled %>
 <% end -%>
-<% if !@disable.eql?('nil') then -%>
+<% if !@disable.empty? then -%>
   disable       = <%= @disable %>
 <% end -%>
-<% if !@enabled.eql?('nil') then -%>
+<% if !@enabled.empty? then -%>
   enabled        = <%= @enabled %>
 <% end -%>
-<% if !@banner.eql?('nil') then -%>
+<% if !@banner.empty? then -%>
   banner         = <%= @banner %>
 <% end -%>
-<% if !@banner_success.eql?('nil') then -%>
+<% if !@banner_success.empty? then -%>
   banner_success = <%= @banner_success %>
 <% end -%>
-<% if !@banner_fail.eql?('nil') then -%>
+<% if !@banner_fail.empty? then -%>
   banner_fail    = <%= @banner_fail %>
 <% end -%>
-<% if !@groups.eql?('nil') then -%>
+<% if !@groups.empty? then -%>
   groups         = <%= @groups %>
 <% end -%>
-<% if !@cps.eql?('nil') then -%>
+<% if !@cps.empty? then -%>
   cps            = <%= @cps %>
 <% end -%>
-<% if !@max_load.eql?('nil') then -%>
+<% if !@max_load.empty? then -%>
   max_load       = <%= @max_load %>
 <% end -%>
 }

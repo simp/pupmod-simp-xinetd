@@ -1,10 +1,11 @@
 ---
 fixtures:
+  repositories:
+    common: 'git://github.com/simp/pupmod-simp-common'
+    concat: 'git://github.com/simp/pupmod-simp-concat'
+    iptables: 'git://github.com/simp/pupmod-simp-iptables'
+    rsync: 'git://github.com/simp/pupmod-simp-rsync'
+    stdlib: 'git://github.com/puppetlabs/puppetlabs-stdlib'
+    tcpwrappers: 'git://github.com/simp/pupmod-simp-tcpwrappers'
   symlinks:
     xinetd: "#{source_dir}"
-    common: "#{source_dir}/../common"
-    concat: "#{source_dir}/../concat"
-    iptables: "#{source_dir}/../iptables"
-    rsync: "#{source_dir}/../rsync"
-    stdlib: "#{source_dir}/../stdlib"
-    tcpwrappers: "#{source_dir}/../tcpwrappers"
