@@ -1,0 +1,10 @@
+--- 
+  !ruby/sym backends: 
+    - rspec
+    - yaml
+  !ruby/sym yaml: 
+    !ruby/sym datadir: /home/nick/simp/pupmod-simp-xinetd/spec/fixtures/hieradata
+  !ruby/sym hierarchy: 
+    - "%{custom_hiera}"
+    - "%{module_name}"
+    - default

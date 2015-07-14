@@ -1,16 +1,11 @@
 require 'spec_helper'
 
-describe 'xinetd::config::xinetd_service' do
+describe 'xinetd::tcpwrappers::xinetd_service' do
 
   let(:title) { 'tftp' }
 
   let(:params) { {
-    :server => '/usr/sbin/in.tftpd',
-    :port => '69',
-    :protocol => 'udp',
-    :x_wait => 'yes',
-    :socket_type => 'dgram',
-    :only_from => '127.0.0.1',
+    :only_from    => '127.0.0.1',
     :libwrap_name => 'in.tftpd'
   } }
 
@@ -18,28 +13,28 @@ describe 'xinetd::config::xinetd_service' do
     'CentOS' => {
       '6' => {
       'x86_64' => {
-          :grub_version              => '0.97',
-          :uid_min                   => '500',
+          :grub_version => '0.97',
+          :uid_min      => '500',
         },
       },
       '7' => {
       'x86_64' => {
-          :grub_version              => '2.02~beta2',
-          :uid_min                   => '500',
+          :grub_version => '2.02~beta2',
+          :uid_min      => '500',
         },
       },
     },
     'RedHat' => {
       '6' => {
       'x86_64' => {
-          :grub_version              => '0.97',
-          :uid_min                   => '500',
+          :grub_version => '0.97',
+          :uid_min      => '500',
         },
       },
       '7' => {
       'x86_64' => {
-          :grub_version              => '2.02~beta2',
-          :uid_min                   => '500',
+          :grub_version => '2.02~beta2',
+          :uid_min      => '500',
         },
       },
     },
@@ -49,6 +44,12 @@ describe 'xinetd::config::xinetd_service' do
   #   :interfaces => 'eth0'
   # }
   let(:facts){simp_os_facts}
+
+  shared_examples_for "xinetd::tcpwrappers::xinetd_service" do
+    it do
+      is_expected.to contain_tcpwrappers__allow('in.tftpd').with({ 'pattern' => '127.0.0.1' })
+    end
+  end
 
   context 'supported operating systems' do
     on_supported_os.each do |os, facts|
@@ -65,18 +66,8 @@ describe 'xinetd::config::xinetd_service' do
           facts
         end
 
-        context "create service file for tftp" do
-          it do
-            is_expected.to contain_service('xinetd').with({
-              'ensure'    => 'running',
-              'enable'    => true,
-            })
-            is_expected.to contain_file('/etc/xinetd.d/tftp').with({
-              'owner' => 'root',
-              'group' => 'root',
-              'mode' => '0640'
-            })
-          end
+        context "create firewall rules for a tftp service" do
+          it_behaves_like "xinetd::tcpwrappers::xinetd_service"
         end
 
       end
