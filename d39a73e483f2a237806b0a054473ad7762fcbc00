@@ -1,0 +1,398 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_99fe4f37",
+        "filename": ".travis.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "With the addition of of the :test task in the Rakefile, \"bundle exec rake test\" should do all this + metadata.json validation.",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_39a1c347",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "It would be helpful to expand this README to cover the information in the module skeleton.  pupmod-simp-iptables is an example of a completed README using this template.",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_39b8e375",
+        "filename": "manifests/init.pp",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "It looks like this section should be compeleted.",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_3946237d",
+        "filename": "spec/classes/init_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "This isn\u0027t necessary if you\u0027re including Simp::RspecPuppetFacts; see the \"on_supported_os.each\" section in https://github.com/simp/pupmod-simp-iptables/blob/269cfaa87b5acf7da51d64e9077bed6da40636ff/spec/classes/init_spec.rb",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 3
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_f964bb23",
+        "filename": "spec/classes/init_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "This can be deleted.",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_396f03ff",
+        "filename": "spec/classes/init_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Remove FIXME comments",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_597207e6",
+        "filename": "spec/classes/init_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Remove commented code",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_19687ff4",
+        "filename": "spec/classes/init_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Remove comments or remove code section (should probably test that unsupported OSes raise error)",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_995acf4e",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "delete if not necessary for test",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_795fcb41",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "delete if not necessary for test",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_5949278a",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "See https://github.com/simp/pupmod-simp-iptables/blob/269cfaa87b5acf7da51d64e9077bed6da40636ff/spec/classes/init_spec.rb",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_b959535c",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Delete",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 9
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_d9545723",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Delete if not necessary",
+      "range": {
+        "startLine": 69,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 1
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_99ac8f37",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Ugh, did I leave  this in the skeleton source code somewhere?  SIMP-207 is complete, so this line can go away.",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_b9ab131c",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Remove FIXME",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_d9a61753",
+        "filename": "spec/defines/firewall_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Please remove this commented-out code.",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_f932fb0e",
+        "filename": "spec/defines/service_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "same comments as earlier, Simp::RspecPuppetFacts takes care of this",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_7978abc4",
+        "filename": "spec/defines/service_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Same drill for cleanup",
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_59404756",
+        "filename": "spec/defines/tcpwrappers_spec.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "Use Simp::RspecPuppetFacts \u0026 on_supported_os.each",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad9bd40_7926ebcf",
+        "filename": "spec/fixtures/hieradata/hiera.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1005143
+      },
+      "writtenOn": "2015-07-15T20:26:18Z",
+      "side": 1,
+      "message": "trailing whitespaces!",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 4
+      },
+      "revId": "d39a73e483f2a237806b0a054473ad7762fcbc00",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
