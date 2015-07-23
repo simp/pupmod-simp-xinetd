@@ -10,103 +10,103 @@ service <%= @name %>
     log_on_failure = <%= @log_on_failure %>
     port = <%= @port %>
     umask = <%= @x_umask %>
-<% if ! @x_id.eql?("nil") then -%>
+<% if !@x_id.empty? then -%>
     id = <%= @x_id %>
 <% end -%>
-<% if ! @x_type.eql?("nil") then -%>
+<% if !@x_type.empty? then -%>
     type = <%= @x_type %>
 <% end -%>
-<% if ! @flags.eql?("nil") then -%>
+<% if !@flags.empty? then -%>
     flags = <%= @flags %>
 <% end -%>
-<% if ! @protocol.eql?("nil") then -%>
+<% if !@protocol.empty? then -%>
     protocol = <%= @protocol %>
 <% end -%>
-<% if ! @group.eql?("nil") then -%>
+<% if !@group.empty? then -%>
     group = <%= @group %>
 <% end -%>
-<% if ! @nice.eql?("nil") then -%>
+<% if !@nice.empty? then -%>
     nice = <%= @nice %>
 <% end -%>
-<% if ! @server_args.eql?("nil") then -%>
+<% if !@server_args.empty? then -%>
     server_args = <%= @server_args %>
 <% end -%>
-<% if ! @libwrap.eql?("nil") then -%>
+<% if !@libwrap.empty? then -%>
     libwrap = <%= @libwrap %>
 <% end -%>
-<% if ! @only_from.eql?("nil") then -%>
+<% if !@only_from.empty? then -%>
     only_from = <%= scope.function_nets2cidr([@only_from]).join(' ') %>
 <% end -%>
-<% if ! @access_times.eql?("nil") then -%>
+<% if !@access_times.empty? then -%>
     access_times = <%= @access_times %>
 <% end -%>
-<% if ! @rpc_version.eql?("nil") then -%>
+<% if !@rpc_version.empty? then -%>
     rpc_version = <%= @rpc_version %>
 <% end -%>
-<% if ! @rpc_number.eql?("nil") then -%>
+<% if !@rpc_number.empty? then -%>
     rpc_number = <%= @rpc_number %>
 <% end -%>
-<% if ! @env.eql?("nil") then -%>
+<% if !@env.empty? then -%>
     env = <%= @env %>
 <% end -%>
-<% if ! @passenv.eql?("nil") then -%>
+<% if !@passenv.empty? then -%>
     passenv = <%= @passenv %>
 <% end -%>
-<% if ! @redirect_ip.eql?("nil") then -%>
+<% if !@redirect_ip.empty? then -%>
     redirect = <%= @redirect_ip %>
-<% if ! @redirect_port.eql?("nil") then -%>
+<% if !@redirect_port.empty? then -%>
 <%= @redirect_port %>
 <% end -%>
 <% end -%>
-<% if ! @x_bind.eql?("nil") then -%>
+<% if !@x_bind.empty? then -%>
     bind = <%= @x_bind %>
 <% end -%>
-<% if ! @banner.eql?("nil") then -%>
+<% if !@banner.empty? then -%>
     banner = <%= @banner %>
 <% end -%>
-<% if ! @banner_success.eql?("nil") then -%>
+<% if !@banner_success.empty? then -%>
     banner_success = <%= @banner_success %>
 <% end -%>
-<% if ! @banner_fail.eql?("nil") then -%>
+<% if !@banner_fail.empty? then -%>
     banner_fail = <%= @banner_fail %>
 <% end -%>
-<% if ! @per_source.eql?("nil") then -%>
+<% if !@per_source.empty? then -%>
     per_source = <%= @per_source %>
 <% end -%>
-<% if ! @cps.eql?("nil") then -%>
+<% if !@cps.empty? then -%>
     cps = <%= @cps %>
 <% end -%>
-<% if ! @max_load.eql?("nil") then -%>
+<% if !@max_load.empty? then -%>
     max_load = <%= @max_load %>
 <% end -%>
-<% if ! @groups.eql?("nil") then -%>
+<% if !@groups.empty? then -%>
     groups = <%= @groups %>
 <% end -%>
-<% if ! @enabled.eql?("nil") then -%>
+<% if !@enabled.empty? then -%>
     enabled = <%= @enabled %>
 <% end -%>
-<% if ! @include.eql?("nil") then -%>
+<% if !@include.empty? then -%>
     include = <%= @include %>
 <% end -%>
-<% if ! @includedir.eql?("nil") then -%>
+<% if !@includedir.empty? then -%>
     includedir = <%= @includedir %>
 <% end -%>
-<% if ! @rlimit_as.eql?("nil") then -%>
+<% if !@rlimit_as.empty? then -%>
     rlimit_as = <%= @rlimit_as %>
 <% end -%>
-<% if ! @rlimit_cpu.eql?("nil") then -%>
+<% if !@rlimit_cpu.empty? then -%>
     rlimit_cpu = <%= @rlimit_cpu %>
 <% end -%>
-<% if ! @rlimit_data.eql?("nil") then -%>
+<% if !@rlimit_data.empty? then -%>
     rlimit_data = <%= @rlimit_data %>
 <% end -%>
-<% if ! @rlimit_rss.eql?("nil") then -%>
+<% if !@rlimit_rss.empty? then -%>
     rlimit_rss = <%= @rlimit_rss %>
 <% end -%>
-<% if ! @rlimit_stack.eql?("nil") then -%>
+<% if !@rlimit_stack.empty? then -%>
     rlimit_stack = <%= @rlimit_stack %>
 <% end -%>
-<% if ! @deny_time.eql?("nil") then -%>
+<% if !@deny_time.empty? then -%>
     deny_time = <%= @deny_time %>
 <% end -%>
 }
