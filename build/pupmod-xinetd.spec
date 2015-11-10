@@ -1,7 +1,7 @@
 Summary: Xinetd Puppet Module
 Name: pupmod-xinetd
 Version: 2.1.0
-Release: 3
+Release: 4
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -51,6 +51,9 @@ mkdir -p %{buildroot}/%{prefix}/xinetd
 # Post uninstall stuff
 
 %changelog
+* Tue Nov 10 2015 Chris Tessmer <chris.tessmer@onypoint.com> - 2.1.0-4
+- migration to simplib and simpcat (lib/ only)
+
 * Mon Apr 06 2015 Trevor Vaughan <tvaughan@onyxpoint.com> - 2.1.0-3
 - Updated the default log_type to 'SYSLOG authpriv'
 

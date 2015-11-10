@@ -37,12 +37,12 @@ class xinetd(
 ) {
 
   file { '/etc/xinetd.conf':
-    owner    => 'root',
-    group    => 'root',
-    mode     => '0600',
-    content  => template('xinetd/xinetd.conf.erb'),
-    notify   => [ Service['xinetd'] ],
-    require  => Package['xinetd']
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
+    content => template('xinetd/xinetd.conf.erb'),
+    notify  => [ Service['xinetd'] ],
+    require => Package['xinetd']
   }
 
   file { '/etc/xinetd.d':
