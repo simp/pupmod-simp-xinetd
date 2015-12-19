@@ -7,13 +7,13 @@ describe 'xinetd' do
   }
   let(:facts){base_facts}
 
-  it { should create_class('xinetd') }
-  it { should contain_package('xinetd').that_comes_before('Service[xinetd]') }
-  it { should contain_package('xinetd').that_comes_before('File[/etc/xinetd.conf]') }
-  it { should contain_package('xinetd').that_comes_before('File[/etc/xinetd.d]') }
+  it { is_expected.to create_class('xinetd') }
+  it { is_expected.to contain_package('xinetd').that_comes_before('Service[xinetd]') }
+  it { is_expected.to contain_package('xinetd').that_comes_before('File[/etc/xinetd.conf]') }
+  it { is_expected.to contain_package('xinetd').that_comes_before('File[/etc/xinetd.d]') }
 
   it do
-    should contain_file('/etc/xinetd.conf').with({
+    is_expected.to contain_file('/etc/xinetd.conf').with({
       'owner' => 'root',
       'group' => 'root',
       'mode' => '0600',
@@ -21,7 +21,7 @@ describe 'xinetd' do
   end
 
   it do
-    should contain_file('/etc/xinetd.d').with({
+    is_expected.to contain_file('/etc/xinetd.d').with({
       'ensure' => 'directory',
       'owner' => 'root',
       'group' => 'root',

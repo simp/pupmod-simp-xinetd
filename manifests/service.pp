@@ -62,49 +62,7 @@ define xinetd::service (
     $rlimit_stack = 'nil',
     $deny_time = 'nil'
 ) {
-    include 'rsync'
-
-  file { "/etc/xinetd.d/$name":
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
-    content => template('xinetd/xinetd.service.erb'),
-    notify  => Service['xinetd']
-  }
-
-  case $protocol {
-    'tcp':  {
-      iptables::add_tcp_stateful_listen { "allow_$name":
-        order       => '11',
-        client_nets => $only_from,
-        dports      => $port
-      }
-    }
-    'udp':  {
-      iptables::add_udp_listen { "allow_$name":
-        order       => '11',
-        client_nets => $only_from,
-        dports      => $port
-      }
-    }
-    default:  {
-    }
-  }
-
-  if defined('tcpwrappers') and defined(Class['tcpwrappers']) {
-    case $libwrap_name {
-      'nil':  {
-        tcpwrappers::allow { $name:
-          pattern => $only_from
-        }
-      }
-      default:  {
-        tcpwrappers::allow { $libwrap_name:
-          pattern => $only_from
-        }
-      }
-    }
-  }
+  include 'rsync'
 
   validate_string($server)
   validate_integer($port)
@@ -130,7 +88,7 @@ define xinetd::service (
   if $rpc_number != 'nil' { validate_integer($rpc_number) }
   if $env != 'nil' { validate_string($env) }
   if $passenv != 'nil' { validate_string($passenv) }
-  if ($redirect_ip != 'nil' and $redirect_port != 'nil') { validate_net_list("$redirect_ip:redirect_port") }
+  if ($redirect_ip != 'nil' and $redirect_port != 'nil') { validate_net_list("${redirect_ip}:${redirect_port}") }
   if $x_bind != 'nil' { validate_net_list($x_bind) }
   if $banner != 'nil' { validate_string($banner) }
   if $banner_success != 'nil' { validate_string($banner_success) }
@@ -149,4 +107,46 @@ define xinetd::service (
   if $rlimit_rss != 'nil' { validate_re($rlimit_rss, '^((\d+)|(UNLIMITED))$') }
   if $rlimit_stack != 'nil' { validate_re($rlimit_stack, '^((\d+)|(UNLIMITED))$') }
   if $deny_time != 'nil' { validate_re($deny_time, '^((\d+)|(FOREVER|NEVER))$') }
+
+  file { "/etc/xinetd.d/${name}":
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0640',
+    content => template('xinetd/xinetd.service.erb'),
+    notify  => Service['xinetd']
+  }
+
+  case $protocol {
+    'tcp':  {
+      iptables::add_tcp_stateful_listen { "allow_${name}":
+        order       => '11',
+        client_nets => $only_from,
+        dports      => $port
+      }
+    }
+    'udp':  {
+      iptables::add_udp_listen { "allow_${name}":
+        order       => '11',
+        client_nets => $only_from,
+        dports      => $port
+      }
+    }
+    default:  {
+    }
+  }
+
+  if defined('tcpwrappers') and defined(Class['tcpwrappers']) {
+    case $libwrap_name {
+      'nil':  {
+        tcpwrappers::allow { $name:
+          pattern => $only_from
+        }
+      }
+      default:  {
+        tcpwrappers::allow { $libwrap_name:
+          pattern => $only_from
+        }
+      }
+    }
+  }
 }
