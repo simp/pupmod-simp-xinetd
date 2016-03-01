@@ -8,5 +8,6 @@ fixtures:
     rsync: "git://github.com/simp/pupmod-simp-rsync"
     tcpwrappers: "git://github.com/simp/pupmod-simp-tcpwrappers"
     stdlib: "git://github.com/simp/puppetlabs-stdlib"
+    compliance: "https://github.com/trevor-vaughan/pupmod-compliance"
   symlinks:
     xinetd: "#{source_dir}"

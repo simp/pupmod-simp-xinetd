@@ -1,7 +1,7 @@
 Summary: Xinetd Puppet Module
 Name: pupmod-xinetd
 Version: 2.1.0
-Release: 4
+Release: 5
 License: Apache License, Version 2.0
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -13,6 +13,7 @@ Requires: puppet >= 3.3.0
 Buildarch: noarch
 Requires: simp-bootstrap >= 4.2.0
 Obsoletes: pupmod-xinetd-test
+Requires: pupmod-onyxpoint-compliance_markup
 
 Prefix: /etc/puppet/environments/simp/modules
 
@@ -51,6 +52,9 @@ mkdir -p %{buildroot}/%{prefix}/xinetd
 # Post uninstall stuff
 
 %changelog
+* Tue Mar 01 2016 Ralph Wright <ralph.wright@onyxpoint.com> - 2.1.0-5
+- Added compliance function support
+
 * Tue Nov 10 2015 Chris Tessmer <chris.tessmer@onypoint.com> - 2.1.0-4
 - migration to simplib and simpcat (lib/ only)
 

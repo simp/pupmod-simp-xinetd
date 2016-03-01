@@ -83,4 +83,6 @@ class xinetd(
   validate_re($groups, '(yes|no)')
   validate_re($cps, '^\d+\s\d+$')
   if $max_load != 'nil' { validate_re($max_load, '^(.?|\d+).?\d*$') }
+
+  compliance_map()
 }
