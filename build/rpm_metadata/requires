@@ -1,0 +1,5 @@
+Requires: pupmod-simp-compliance_markup
+Requires: pupmod-simp-iptables >= 2.0.0-0
+Requires: pupmod-simp-rsync
+Requires: pupmod-simp-tcpwrappers
+Obsoletes: pupmod-xinetd-test >= 0.0.1

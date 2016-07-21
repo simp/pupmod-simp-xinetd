@@ -10,21 +10,21 @@
   "tags": [ "simp", "xinetd" ],
   "dependencies": [
     {
-      "name": "puppetlabs-stdlib",
+      "name": "puppetlabs/stdlib",
       "version_requirement": ">= 4.1.0"
     },
     {
-      "name": "simp-rsync"
+      "name": "simp/rsync"
     },
     {
-      "name": "simp-iptables",
+      "name": "simp/iptables",
       "version_requirement": ">= 2.0.0"
     },
     {
-      "name": "simp-tcpwrappers"
+      "name": "simp/tcpwrappers"
     },
     {
-      "name": "onyxpoint/compliance_markup",
+      "name": "simp/compliance_markup",
       "version_requirement": ">= 1.0.0"
     }
   ],
