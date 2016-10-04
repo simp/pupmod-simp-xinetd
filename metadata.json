@@ -1,31 +1,36 @@
 {
-  "name":    "simp-xinetd",
+  "name": "simp-xinetd",
   "version": "2.1.0",
-  "author":  "simp",
+  "author": "simp",
   "summary": "Manages xinetd.",
   "license": "Apache-2.0",
-  "source":  "https://github.com/simp/pupmod-simp-xinetd",
+  "source": "https://github.com/simp/pupmod-simp-xinetd",
   "project_page": "https://github.com/simp/pupmod-simp-xinetd",
-  "issues_url":   "https://simp-project.atlassian.net",
-  "tags": [ "simp", "xinetd" ],
+  "issues_url": "https://simp-project.atlassian.net",
+  "tags": [
+    "simp",
+    "xinetd"
+  ],
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.1.0"
+      "version_requirement": ">= 4.9.0 < 5.0.0"
     },
     {
-      "name": "simp/rsync"
+      "name": "simp/rsync",
+      "version_requirement": ">= 4.2.2 < 5.0.0"
     },
     {
       "name": "simp/iptables",
-      "version_requirement": ">= 2.0.0"
+      "version_requirement": ">= 4.1.4 < 5.0.0"
     },
     {
-      "name": "simp/tcpwrappers"
+      "name": "simp/tcpwrappers",
+      "version_requirement": ">= 4.1.0 < 5.0.0"
     },
     {
       "name": "simp/compliance_markup",
-      "version_requirement": ">= 1.0.0"
+      "version_requirement": ">= 1.0.1 < 2.0.0"
     }
   ],
   "operatingsystem_support": [
