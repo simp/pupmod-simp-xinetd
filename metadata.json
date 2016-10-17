@@ -18,7 +18,7 @@
     },
     {
       "name": "simp/rsync",
-      "version_requirement": ">= 4.2.2 < 5.0.0"
+      "version_requirement": ">= 5.0.0 < 6.0.0"
     },
     {
       "name": "simp/iptables",
@@ -26,7 +26,7 @@
     },
     {
       "name": "simp/tcpwrappers",
-      "version_requirement": ">= 4.1.0 < 5.0.0"
+      "version_requirement": ">= 5.0.0 < 6.0.0"
     },
     {
       "name": "simp/compliance_markup",
