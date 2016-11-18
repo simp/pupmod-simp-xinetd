@@ -1,7 +1,7 @@
 {
   "name": "simp-xinetd",
   "version": "2.1.2",
-  "author": "simp",
+  "author": "SIMP Team",
   "summary": "Manages xinetd.",
   "license": "Apache-2.0",
   "source": "https://github.com/simp/pupmod-simp-xinetd",
@@ -27,10 +27,6 @@
     {
       "name": "simp/tcpwrappers",
       "version_requirement": ">= 5.0.0 < 6.0.0"
-    },
-    {
-      "name": "simp/compliance_markup",
-      "version_requirement": ">= 1.0.1 < 2.0.0"
     }
   ],
   "operatingsystem_support": [
