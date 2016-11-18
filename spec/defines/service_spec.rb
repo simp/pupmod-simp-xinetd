@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe 'xinetd::service' do
+  let :pre_condition do
+    'include tcpwrappers'
+  end
 
   let(:title) { 'tftp' }
 
