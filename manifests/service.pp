@@ -62,8 +62,6 @@ define xinetd::service (
     $rlimit_stack = 'nil',
     $deny_time = 'nil'
 ) {
-  include 'rsync'
-
   validate_string($server)
   validate_integer($port)
   validate_string($protocol)

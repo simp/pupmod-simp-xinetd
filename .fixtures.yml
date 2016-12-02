@@ -2,7 +2,6 @@
 fixtures:
   repositories:
     iptables: https://github.com/simp/pupmod-simp-iptables
-    rsync: https://github.com/simp/pupmod-simp-rsync
     simpcat: https://github.com/simp/pupmod-simp-simpcat
     simplib: https://github.com/simp/pupmod-simp-simplib
     stdlib:
