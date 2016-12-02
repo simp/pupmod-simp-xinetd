@@ -1,3 +1,6 @@
+* Thu Dec 01 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.0.1-0
+- Removed unnecessary dependency and call to pupmod-simp-rsync
+
 * Tue Nov 22 2016 Liz Nemsick <lnemsick.simp@gmail.com> - 3.0.0-0
 - Update version to reflect SIMP6 dependencies
 - Minor cleanup
