@@ -34,8 +34,11 @@ service <%= @name %>
 <% if ! @libwrap.eql?("nil") then -%>
     libwrap = <%= @libwrap %>
 <% end -%>
-<% if ! @only_from.eql?("nil") then -%>
-    only_from = <%= scope.function_nets2cidr([@only_from]).join(' ') %>
+<% if !@trusted_nets.empty? then -%>
+    only_from = <%= scope.function_nets2cidr(@trusted_nets).join(' ') %>
+<% end -%>
+<% if ! @instances.eql?("nil") then -%>
+    instances = <%= @instances %>
 <% end -%>
 <% if ! @access_times.eql?("nil") then -%>
     access_times = <%= @access_times %>
@@ -53,11 +56,11 @@ service <%= @name %>
     passenv = <%= @passenv %>
 <% end -%>
 <% if ! @redirect_ip.eql?("nil") then -%>
-    redirect = <%= @redirect_ip %>
+    redirect = <%= @redirect_ip -%>
 <% if ! @redirect_port.eql?("nil") then -%>
-<%= @redirect_port %>
+ <%= @redirect_port -%>
 <% end -%>
-<% end -%>
+<% end %>
 <% if ! @x_bind.eql?("nil") then -%>
     bind = <%= @x_bind %>
 <% end -%>
@@ -81,6 +84,9 @@ service <%= @name %>
 <% end -%>
 <% if ! @groups.eql?("nil") then -%>
     groups = <%= @groups %>
+<% end -%>
+<% if ! @mdns.eql?("nil") then -%>
+    mdns = <%= @mdns %>
 <% end -%>
 <% if ! @enabled.eql?("nil") then -%>
     enabled = <%= @enabled %>

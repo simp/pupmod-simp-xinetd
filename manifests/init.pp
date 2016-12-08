@@ -21,7 +21,7 @@ class xinetd(
   $x_umask        = 'nil',
   $log_on_success = 'HOST PID DURATION TRAFFIC',
   $log_on_failure = 'HOST',
-  $only_from      = 'nil',
+  $trusted_nets   = lookup('::simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'], 'value_type' => Array[String] }),
   $no_access      = 'nil',
   $passenv        = 'nil',
   $instances      = '60',
@@ -64,17 +64,18 @@ class xinetd(
     require   => Package['xinetd']
   }
 
-
+  #TODO Fix the inconsistent use of strings versus arrays.  Some of these
+  # config items are strings that contain a space-separated list of items.
   validate_string($log_type)
-  if $x_bind != 'nil' { validate_string($x_bind) }
+  if $x_bind != 'nil' { validate_net_list($x_bind) }
   if $per_source != 'nil' { validate_re($per_source, '(^\d+$|UNLIMITED)') }
   if $x_umask != 'nil' { validate_umask($x_umask) }
   validate_string($log_on_success)
   validate_string($log_on_failure)
   if $no_access != 'nil' { validate_string($no_access) }
-  if $passenv != 'nil' { validate_array($passenv) }
+  if $passenv != 'nil' { validate_string($passenv) }
   validate_re($instances, '(^\d+$|UNLIMITED)')
-  if $disable != 'nil' { validate_re('(yes|no)') }
+  if $disable != 'nil' { validate_re($disable, '(yes|no)') }
   if $disabled != 'nil' { validate_string($disabled) }
   if $enabled != 'nil' { validate_string($enabled) }
   validate_string($banner)
