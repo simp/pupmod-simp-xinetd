@@ -1,60 +1,60 @@
 defaults
 {
-<% if !@log_type.eql?('nil') then -%>
+<% if !@log_type.nil? then -%>
   log_type       = <%= @log_type %>
 <% end -%>
-<% if !@x_bind.eql?('nil') then -%>
+<% if !@x_bind.nil? then -%>
   bind           = <%= @x_bind %>
 <% end -%>
-<% if !@per_source.eql?('nil') then -%>
+<% if !@per_source.nil? then -%>
   per_source     = <%= @per_source %>
 <% end -%>
-<% if !@x_umask.eql?('nil') then -%>
+<% if !@x_umask.nil? then -%>
   umask          = <%= @x_umask %>
 <% end -%>
-<% if !@log_on_success.eql?('nil') then -%>
-  log_on_success = <%= @log_on_success %>
+<% if !@log_on_success.nil? then -%>
+  log_on_success = <%= @log_on_success.join(' ') %>
 <% end -%>
-<% if !@log_on_failure.eql?('nil') then -%>
-  log_on_failure = <%= @log_on_failure %>
+<% if !@log_on_failure.nil? then -%>
+  log_on_failure = <%= @log_on_failure.join(' ') %>
 <% end -%>
 <% if !@trusted_nets.empty? then -%>
   only_from      = <%=scope.function_nets2cidr(@trusted_nets).join(' ') %>
 <% end -%>
-<% if !@no_access.eql?('nil') then -%>
+<% if !@no_access.nil? then -%>
   no_access      = <%= @no_access %>
 <% end -%>
-<% if !@passenv.eql?('nil') then -%>
+<% if !@passenv.nil? then -%>
   passenv        = <%= @passenv %>
 <% end -%>
-<% if !@instances.eql?('nil') then -%>
+<% if !@instances.nil? then -%>
   instances      = <%= @instances %>
 <% end -%>
-<% if !@disabled.eql?('nil') then -%>
+<% if !@disabled.nil? then -%>
   disabled       = <%= @disabled %>
 <% end -%>
-<% if !@disable.eql?('nil') then -%>
+<% if !@disable.nil? then -%>
   disable        = <%= @disable %>
 <% end -%>
-<% if !@enabled.eql?('nil') then -%>
+<% if !@enabled.nil? then -%>
   enabled        = <%= @enabled %>
 <% end -%>
-<% if !@banner.eql?('nil') then -%>
+<% if !@banner.nil? then -%>
   banner         = <%= @banner %>
 <% end -%>
-<% if !@banner_success.eql?('nil') then -%>
+<% if !@banner_success.nil? then -%>
   banner_success = <%= @banner_success %>
 <% end -%>
-<% if !@banner_fail.eql?('nil') then -%>
+<% if !@banner_fail.nil? then -%>
   banner_fail    = <%= @banner_fail %>
 <% end -%>
-<% if !@groups.eql?('nil') then -%>
+<% if !@groups.nil? then -%>
   groups         = <%= @groups %>
 <% end -%>
-<% if !@cps.eql?('nil') then -%>
-  cps            = <%= @cps %>
+<% if !@cps.nil? then -%>
+  cps            = <%= @cps.join(' ') %>
 <% end -%>
-<% if !@max_load.eql?('nil') then -%>
+<% if !@max_load.nil? then -%>
   max_load       = <%= @max_load %>
 <% end -%>
 }

@@ -6,113 +6,113 @@ service <%= @name %>
     wait = <%= @x_wait %>
     disable = <%= @disable %>
     log_type = <%= @log_type %>
-    log_on_success = <%= @log_on_success %>
-    log_on_failure = <%= @log_on_failure %>
+    log_on_success = <%= @log_on_success.join(' ') %>
+    log_on_failure = <%= @log_on_failure.join(' ') %>
     port = <%= @port %>
     umask = <%= @x_umask %>
-<% if ! @x_id.eql?("nil") then -%>
+<% if ! @x_id.nil? then -%>
     id = <%= @x_id %>
 <% end -%>
-<% if ! @x_type.eql?("nil") then -%>
+<% if ! @x_type.nil? then -%>
     type = <%= @x_type %>
 <% end -%>
-<% if ! @flags.eql?("nil") then -%>
-    flags = <%= @flags %>
+<% if ! @flags.nil? then -%>
+    flags = <%= @flags.join(' ') %>
 <% end -%>
-<% if ! @protocol.eql?("nil") then -%>
+<% if ! @protocol.nil? then -%>
     protocol = <%= @protocol %>
 <% end -%>
-<% if ! @group.eql?("nil") then -%>
+<% if ! @group.nil? then -%>
     group = <%= @group %>
 <% end -%>
-<% if ! @nice.eql?("nil") then -%>
+<% if ! @nice.nil? then -%>
     nice = <%= @nice %>
 <% end -%>
-<% if ! @server_args.eql?("nil") then -%>
+<% if ! @server_args.nil? then -%>
     server_args = <%= @server_args %>
 <% end -%>
-<% if ! @libwrap.eql?("nil") then -%>
+<% if ! @libwrap.nil? then -%>
     libwrap = <%= @libwrap %>
 <% end -%>
 <% if !@trusted_nets.empty? then -%>
     only_from = <%= scope.function_nets2cidr(@trusted_nets).join(' ') %>
 <% end -%>
-<% if ! @instances.eql?("nil") then -%>
+<% if ! @instances.nil? then -%>
     instances = <%= @instances %>
 <% end -%>
-<% if ! @access_times.eql?("nil") then -%>
+<% if ! @access_times.nil? then -%>
     access_times = <%= @access_times %>
 <% end -%>
-<% if ! @rpc_version.eql?("nil") then -%>
+<% if ! @rpc_version.nil? then -%>
     rpc_version = <%= @rpc_version %>
 <% end -%>
-<% if ! @rpc_number.eql?("nil") then -%>
+<% if ! @rpc_number.nil? then -%>
     rpc_number = <%= @rpc_number %>
 <% end -%>
-<% if ! @env.eql?("nil") then -%>
+<% if ! @env.nil? then -%>
     env = <%= @env %>
 <% end -%>
-<% if ! @passenv.eql?("nil") then -%>
+<% if ! @passenv.nil? then -%>
     passenv = <%= @passenv %>
 <% end -%>
-<% if ! @redirect_ip.eql?("nil") then -%>
+<% if ! @redirect_ip.nil? then -%>
     redirect = <%= @redirect_ip -%>
-<% if ! @redirect_port.eql?("nil") then -%>
- <%= @redirect_port -%>
-<% end -%>
+<%  if ! @redirect_port.nil? then -%>
+ <%=  @redirect_port -%>
+<%  end -%>
 <% end %>
-<% if ! @x_bind.eql?("nil") then -%>
+<% if ! @x_bind.nil? then -%>
     bind = <%= @x_bind %>
 <% end -%>
-<% if ! @banner.eql?("nil") then -%>
+<% if ! @banner.nil? then -%>
     banner = <%= @banner %>
 <% end -%>
-<% if ! @banner_success.eql?("nil") then -%>
+<% if ! @banner_success.nil? then -%>
     banner_success = <%= @banner_success %>
 <% end -%>
-<% if ! @banner_fail.eql?("nil") then -%>
+<% if ! @banner_fail.nil? then -%>
     banner_fail = <%= @banner_fail %>
 <% end -%>
-<% if ! @per_source.eql?("nil") then -%>
+<% if ! @per_source.nil? then -%>
     per_source = <%= @per_source %>
 <% end -%>
-<% if ! @cps.eql?("nil") then -%>
-    cps = <%= @cps %>
+<% if ! @cps.nil? then -%>
+    cps = <%= @cps.join(' ') %>
 <% end -%>
-<% if ! @max_load.eql?("nil") then -%>
+<% if ! @max_load.nil? then -%>
     max_load = <%= @max_load %>
 <% end -%>
-<% if ! @groups.eql?("nil") then -%>
+<% if ! @groups.nil? then -%>
     groups = <%= @groups %>
 <% end -%>
-<% if ! @mdns.eql?("nil") then -%>
+<% if ! @mdns.nil? then -%>
     mdns = <%= @mdns %>
 <% end -%>
-<% if ! @enabled.eql?("nil") then -%>
+<% if ! @enabled.nil? then -%>
     enabled = <%= @enabled %>
 <% end -%>
-<% if ! @include.eql?("nil") then -%>
+<% if ! @include.nil? then -%>
     include = <%= @include %>
 <% end -%>
-<% if ! @includedir.eql?("nil") then -%>
+<% if ! @includedir.nil? then -%>
     includedir = <%= @includedir %>
 <% end -%>
-<% if ! @rlimit_as.eql?("nil") then -%>
+<% if ! @rlimit_as.nil? then -%>
     rlimit_as = <%= @rlimit_as %>
 <% end -%>
-<% if ! @rlimit_cpu.eql?("nil") then -%>
+<% if ! @rlimit_cpu.nil? then -%>
     rlimit_cpu = <%= @rlimit_cpu %>
 <% end -%>
-<% if ! @rlimit_data.eql?("nil") then -%>
+<% if ! @rlimit_data.nil? then -%>
     rlimit_data = <%= @rlimit_data %>
 <% end -%>
-<% if ! @rlimit_rss.eql?("nil") then -%>
+<% if ! @rlimit_rss.nil? then -%>
     rlimit_rss = <%= @rlimit_rss %>
 <% end -%>
-<% if ! @rlimit_stack.eql?("nil") then -%>
+<% if ! @rlimit_stack.nil? then -%>
     rlimit_stack = <%= @rlimit_stack %>
 <% end -%>
-<% if ! @deny_time.eql?("nil") then -%>
+<% if ! @deny_time.nil? then -%>
     deny_time = <%= @deny_time %>
 <% end -%>
 }

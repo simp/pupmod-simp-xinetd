@@ -20,19 +20,21 @@ end
 
 describe 'xinetd' do
  context 'supported operating systems' do
-    on_supported_os.each do |os, os_facts|
+    on_supported_os.each do |os, facts|
       context "on #{os}" do
-        let(:facts){os_facts}
+        let(:facts) do
+          facts
+        end
 
         context 'default parameters' do
           it_should_behave_like 'a xinetd class'
 
           it do
             is_expected.to contain_file('/etc/xinetd.conf').with({
-              'owner'   => 'root',
-              'group'   => 'root',
-              'mode'    => '0600',
-              'content' => <<EOM
+              :owner   => 'root',
+              :group   => 'root',
+              :mode    => '0600',
+              :content => <<-EOM
 defaults
 {
   log_type       = SYSLOG authpriv
@@ -64,15 +66,15 @@ EOM
             :enabled        => 'some_enabled_d1 some_enabled_id2',
             :banner_success => '/some/banner_success.txt',
             :banner_fail    => '/some/banner_fail.txt',
-            :max_load       => '2.5',
+            :max_load       => 2.5,
           }}
           it_should_behave_like 'a xinetd class'
           it do
             is_expected.to contain_file('/etc/xinetd.conf').with({
-              'owner'   => 'root',
-              'group'   => 'root',
-              'mode'    => '0600',
-              'content' => <<EOM
+              :owner   => 'root',
+              :group   => 'root',
+              :mode    => '0600',
+              :content => <<-EOM
 defaults
 {
   log_type       = SYSLOG authpriv
