@@ -1,40 +1,41 @@
-# == Class: xinetd
-#
 # Set up xinetd
 # This is incomplete but should suffice for basic purposes.
-#
-# == Parameters
 #
 # NOTE: Items prefixed with 'x_' were reserved words in ERB.
 # * xinetd/xinetd.conf.erb
 #
 # Explanations of the options can be found in the xinetd.conf(5) man page.
 #
-# == Authors
+# @author Trevor Vaughan <tvaughan@onyxpoint.com>
 #
-# * Trevor Vaughan <tvaughan@onyxpoint.com>
-#
-class xinetd(
-  $log_type       = 'SYSLOG authpriv',
-  $x_bind         = 'nil',
-  $per_source     = 'nil',
-  $x_umask        = 'nil',
-  $log_on_success = 'HOST PID DURATION TRAFFIC',
-  $log_on_failure = 'HOST',
-  $only_from      = 'nil',
-  $no_access      = 'nil',
-  $passenv        = 'nil',
-  $instances      = '60',
-  $disabled       = 'nil',
-  $disable        = 'nil',
-  $enabled        = 'nil',
-  $banner         = '/etc/issue.net',
-  $banner_success = 'nil',
-  $banner_fail    = 'nil',
-  $groups         = 'no',
-  $cps            = '25 30',
-  $max_load       = 'nil'
+class xinetd (
+  String                           $log_type       = 'SYSLOG authpriv',
+  Optional[String]                 $x_bind         = undef,
+  Optional[Xinetd::UnlimitedInt]   $per_source     = undef,
+  Optional[String]                 $x_umask        = undef,
+  Array[Xinetd::SuccessLogOption]  $log_on_success = ['HOST','PID','DURATION','TRAFFIC'],
+  Array[Xinetd::FailureLogOption]  $log_on_failure = ['HOST'],
+  Array[String]                    $trusted_nets   = lookup('::simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'] }),
+  Optional[Array[String]]          $no_access      = undef,
+  Optional[String]                 $passenv        = undef,
+  Xinetd::UnlimitedInt             $instances      = '60',
+  Optional[Array[String]]          $disabled       = undef,
+  Optional[Enum['yes','no']]       $disable        = undef,
+  Optional[Array[String]]          $enabled        = undef,
+  Stdlib::Absolutepath             $banner         = '/etc/issue.net',
+  Optional[Stdlib::Absolutepath]   $banner_success = undef,
+  Optional[Stdlib::Absolutepath]   $banner_fail    = undef,
+  Enum['yes','no']                 $groups         = 'no',
+  Tuple[Integer,Integer]           $cps            = [25,30],
+  Optional[Float]                  $max_load       = undef
 ) {
+
+  #TODO Fix the inconsistent use of strings versus arrays.  Some of these
+  # config items are strings that contain a space-separated list of items.
+  validate_log_type($log_type)
+  if $x_bind  { validate_net_list($x_bind) }
+  if $x_umask { validate_umask($x_umask) }
+  if $no_access { validate_net_list($no_access) }
 
   file { '/etc/xinetd.conf':
     owner   => 'root',
@@ -63,25 +64,5 @@ class xinetd(
     restart   => '( /bin/ps -C xinetd && /sbin/service xinetd reload ) || /sbin/service xinetd start',
     require   => Package['xinetd']
   }
-
-
-  validate_string($log_type)
-  if $x_bind != 'nil' { validate_string($x_bind) }
-  if $per_source != 'nil' { validate_re($per_source, '(^\d+$|UNLIMITED)') }
-  if $x_umask != 'nil' { validate_umask($x_umask) }
-  validate_string($log_on_success)
-  validate_string($log_on_failure)
-  if $no_access != 'nil' { validate_string($no_access) }
-  if $passenv != 'nil' { validate_array($passenv) }
-  validate_re($instances, '(^\d+$|UNLIMITED)')
-  if $disable != 'nil' { validate_re('(yes|no)') }
-  if $disabled != 'nil' { validate_string($disabled) }
-  if $enabled != 'nil' { validate_string($enabled) }
-  validate_string($banner)
-  if $banner_success != 'nil' { validate_string($banner_success) }
-  if $banner_fail != 'nil' { validate_string($banner_fail) }
-  validate_re($groups, '(yes|no)')
-  validate_re($cps, '^\d+\s\d+$')
-  if $max_load != 'nil' { validate_re($max_load, '^(.?|\d+).?\d*$') }
 
 }

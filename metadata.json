@@ -1,6 +1,6 @@
 {
   "name": "simp-xinetd",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "author": "SIMP Team",
   "summary": "Manages xinetd.",
   "license": "Apache-2.0",
@@ -18,7 +18,11 @@
     },
     {
       "name": "simp/iptables",
-      "version_requirement": ">= 5.0.0 < 6.0.0"
+      "version_requirement": ">= 6.0.0 < 7.0.0"
+    },
+    {
+      "name": "simp/simplib",
+      "version_requirement": ">= 2.1.0 < 3.0.0"
     },
     {
       "name": "simp/tcpwrappers",
