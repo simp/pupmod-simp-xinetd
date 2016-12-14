@@ -21,8 +21,8 @@ defaults
 <% if !@trusted_nets.empty? then -%>
   only_from      = <%=scope.function_nets2cidr(@trusted_nets).join(' ') %>
 <% end -%>
-<% if !@no_access.nil? then -%>
-  no_access      = <%= @no_access %>
+<% if !@no_access.nil? and !@no_access.empty? then -%>
+  no_access      = <%= @no_access.join(' ') %>
 <% end -%>
 <% if !@passenv.nil? then -%>
   passenv        = <%= @passenv %>
@@ -30,14 +30,14 @@ defaults
 <% if !@instances.nil? then -%>
   instances      = <%= @instances %>
 <% end -%>
-<% if !@disabled.nil? then -%>
-  disabled       = <%= @disabled %>
+<% if !@disabled.nil?  and !@no_access.empty? then -%>
+  disabled       = <%= @disabled.join(' ') %>
 <% end -%>
 <% if !@disable.nil? then -%>
   disable        = <%= @disable %>
 <% end -%>
-<% if !@enabled.nil? then -%>
-  enabled        = <%= @enabled %>
+<% if !@enabled.nil? and !@enabled.empty? then -%>
+  enabled        = <%= @enabled.join(' ') %>
 <% end -%>
 <% if !@banner.nil? then -%>
   banner         = <%= @banner %>

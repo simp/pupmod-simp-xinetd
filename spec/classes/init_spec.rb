@@ -59,11 +59,11 @@ EOM
             :per_source     => 'UNLIMITED',
             :x_umask        => '0700',
             :trusted_nets   => ['1.2.3.0/24', '10.0.2.5', '2001:db8:a::/64'],
-            :no_access      => '1.2.3.4',
+	    :no_access      => ['1.2.3.4', '2.3.4.5'],
             :passenv        => 'SOMEENVVAR1 SOMENVVAR2',
-            :disabled       => 'some_disabled_id1 some_disabled_id2',
+            :disabled       => ['some_disabled_id1', 'some_disabled_id2'],
             :disable        => 'yes',
-            :enabled        => 'some_enabled_d1 some_enabled_id2',
+            :enabled        => ['some_enabled_d1', 'some_enabled_id2'],
             :banner_success => '/some/banner_success.txt',
             :banner_fail    => '/some/banner_fail.txt',
             :max_load       => 2.5,
@@ -84,7 +84,7 @@ defaults
   log_on_success = HOST PID DURATION TRAFFIC
   log_on_failure = HOST
   only_from      = 1.2.3.0/24 10.0.2.5 2001:db8:a::/64
-  no_access      = 1.2.3.4
+  no_access      = 1.2.3.4 2.3.4.5
   passenv        = SOMEENVVAR1 SOMENVVAR2
   instances      = 60
   disabled       = some_disabled_id1 some_disabled_id2

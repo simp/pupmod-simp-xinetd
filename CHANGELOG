@@ -4,6 +4,8 @@
   IP address and port in a redirect configuration line in the generated file.
 - Fix bug in xinetd.service.erb in which the instances and mdns configuration
   lines were omitted from the generated file.
+- Fixed bug in xinetd.service.erb in which includedir and include were specified
+  within a service declaration and formatted incorrectly.
 - Fixed bug in validation of syslog facility
 - Fixed bugs in validation of ::xinetd $passenv and $disable parameters
 - Fixed bugs in validation of ::xinetd::service $x_id and $rpc_version parameters

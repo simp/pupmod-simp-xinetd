@@ -16,7 +16,7 @@ service <%= @name %>
 <% if ! @x_type.nil? then -%>
     type = <%= @x_type %>
 <% end -%>
-<% if ! @flags.nil? then -%>
+<% if ! @flags.nil? and ! @flags.empty? then -%>
     flags = <%= @flags.join(' ') %>
 <% end -%>
 <% if ! @protocol.nil? then -%>
@@ -34,7 +34,7 @@ service <%= @name %>
 <% if ! @libwrap.nil? then -%>
     libwrap = <%= @libwrap %>
 <% end -%>
-<% if !@trusted_nets.empty? then -%>
+<% if ! @trusted_nets.empty? then -%>
     only_from = <%= scope.function_nets2cidr(@trusted_nets).join(' ') %>
 <% end -%>
 <% if ! @instances.nil? then -%>
@@ -88,14 +88,8 @@ service <%= @name %>
 <% if ! @mdns.nil? then -%>
     mdns = <%= @mdns %>
 <% end -%>
-<% if ! @enabled.nil? then -%>
-    enabled = <%= @enabled %>
-<% end -%>
-<% if ! @include.nil? then -%>
-    include = <%= @include %>
-<% end -%>
-<% if ! @includedir.nil? then -%>
-    includedir = <%= @includedir %>
+<% if ! @enabled.nil? and ! @enabled.empty? then -%>
+    enabled = <%= @enabled.join(' ') %>
 <% end -%>
 <% if ! @rlimit_as.nil? then -%>
     rlimit_as = <%= @rlimit_as %>
@@ -116,3 +110,10 @@ service <%= @name %>
     deny_time = <%= @deny_time %>
 <% end -%>
 }
+
+<% if ! @include.nil? then -%>
+include <%= @include %>
+<% end -%>
+<% if ! @includedir.nil? then -%>
+includedir <%= @includedir %>
+<% end -%>

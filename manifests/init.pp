@@ -15,25 +15,27 @@ class xinetd (
   Optional[String]                 $x_umask        = undef,
   Array[Xinetd::SuccessLogOption]  $log_on_success = ['HOST','PID','DURATION','TRAFFIC'],
   Array[Xinetd::FailureLogOption]  $log_on_failure = ['HOST'],
-  Array[String]                    $trusted_nets   = lookup('::simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'], 'value_type' => Array[String] }),
-  Optional[String]                 $no_access      = undef,
+  Array[String]                    $trusted_nets   = lookup('::simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'] }),
+  Optional[Array[String]]          $no_access      = undef,
   Optional[String]                 $passenv        = undef,
-  String                           $instances      = '60',
-  Optional[String]                 $disabled       = undef,
+  Xinetd::UnlimitedInt             $instances      = '60',
+  Optional[Array[String]]          $disabled       = undef,
   Optional[Enum['yes','no']]       $disable        = undef,
-  Optional[String]                 $enabled        = undef,
-  String                           $banner         = '/etc/issue.net',
-  Optional[String]                 $banner_success = undef,
-  Optional[String]                 $banner_fail    = undef,
+  Optional[Array[String]]          $enabled        = undef,
+  Stdlib::Absolutepath             $banner         = '/etc/issue.net',
+  Optional[Stdlib::Absolutepath]   $banner_success = undef,
+  Optional[Stdlib::Absolutepath]   $banner_fail    = undef,
   Enum['yes','no']                 $groups         = 'no',
-  Optional[Tuple[Integer,Integer]] $cps            = [25,30],
+  Tuple[Integer,Integer]           $cps            = [25,30],
   Optional[Float]                  $max_load       = undef
 ) {
 
   #TODO Fix the inconsistent use of strings versus arrays.  Some of these
   # config items are strings that contain a space-separated list of items.
+  validate_log_type($log_type)
   if $x_bind  { validate_net_list($x_bind) }
   if $x_umask { validate_umask($x_umask) }
+  if $no_access { validate_net_list($no_access) }
 
   file { '/etc/xinetd.conf':
     owner   => 'root',

@@ -23,7 +23,8 @@ describe 'xinetd::service' do
         context 'default parameters' do
           let(:params) { required_params }
 
-          it_should_behave_like 'a xinetd::service'
+  it { is_expected.to compile.with_all_deps }
+  #        it_should_behave_like 'a xinetd::service'
           it do
             is_expected.to contain_file('/etc/xinetd.d/tftp').with({
               'owner'   => 'root',
@@ -46,6 +47,7 @@ service tftp
     only_from = 127.0.0.1 ::1
 
 }
+
 EOM
             })
           end
@@ -79,7 +81,7 @@ EOM
             :max_load       => 2.6,
             :groups         => 'yes',
             :mdns           => 'no',
-            :enabled        => 'service_id1 service_id2',
+            :enabled        => ['service_id1', 'service_id2'],
             :include        => '/etc/xinetd/servicex',
             :includedir     => '/etc/xinetd.d/some/sub/dir',
             :rlimit_as      => 'UNLIMITED',
@@ -134,8 +136,6 @@ service tftp
     groups = yes
     mdns = no
     enabled = service_id1 service_id2
-    include = /etc/xinetd/servicex
-    includedir = /etc/xinetd.d/some/sub/dir
     rlimit_as = UNLIMITED
     rlimit_cpu = 3
     rlimit_data = 4
@@ -143,6 +143,9 @@ service tftp
     rlimit_stack = 6
     deny_time = FOREVER
 }
+
+include /etc/xinetd/servicex
+includedir /etc/xinetd.d/some/sub/dir
 EOM
             })
           end
