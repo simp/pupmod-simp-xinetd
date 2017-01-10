@@ -78,15 +78,15 @@ define xinetd::service (
     include '::iptables'
     case $protocol {
       'tcp':  {
-        iptables::add_tcp_stateful_listen { "allow_${name}":
-          order        => '11',
+        iptables::listen::tcp_stateful { "allow_${name}":
+          order        => 11,
           trusted_nets => $trusted_nets,
           dports       => $port
         }
       }
       'udp':  {
-        iptables::add_udp_listen { "allow_${name}":
-          order        => '11',
+        iptables::listen::udp { "allow_${name}":
+          order        => 11,
           trusted_nets => $trusted_nets,
           dports       => $port
         }
