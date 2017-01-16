@@ -161,10 +161,10 @@ EOM
             it_should_behave_like 'a xinetd::service'
             it { is_expected.to contain_class('iptables') }
             it do
-             is_expected.to contain_iptables__add_tcp_stateful_listen('allow_tftp').with({
-                'order' => '11',
+             is_expected.to contain_iptables__listen__tcp_stateful('allow_tftp').with({
+                'order' => 11,
                 'trusted_nets' => ['127.0.0.1', '::1'],
-                'dports' => '69'
+                'dports' => 69
               })
             end
           end
@@ -178,10 +178,10 @@ EOM
             it_should_behave_like 'a xinetd::service'
             it { is_expected.to contain_class('iptables') }
             it do
-              is_expected.to contain_iptables__add_udp_listen('allow_tftp').with({
-                'order' => '11',
+              is_expected.to contain_iptables__listen__udp('allow_tftp').with({
+                'order' => 11,
                 'trusted_nets' => ['127.0.0.1', '::1'],
-                'dports' => '69'
+                'dports' => 69
               })
             end
           end
