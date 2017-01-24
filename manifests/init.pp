@@ -15,7 +15,7 @@ class xinetd (
   Optional[String]                 $x_umask        = undef,
   Array[Xinetd::SuccessLogOption]  $log_on_success = ['HOST','PID','DURATION','TRAFFIC'],
   Array[Xinetd::FailureLogOption]  $log_on_failure = ['HOST'],
-  Array[String]                    $trusted_nets   = lookup('::simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'] }),
+  Array[String]                    $trusted_nets   = lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'] }),
   Optional[Array[String]]          $no_access      = undef,
   Optional[String]                 $passenv        = undef,
   Xinetd::UnlimitedInt             $instances      = '60',

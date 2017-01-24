@@ -10,7 +10,7 @@
 #
 define xinetd::service (
   String                            $server,
-  Integer                           $port,
+  Simplib::Port                     $port,
   String                            $protocol,
   Enum['yes','no']                  $x_wait,
   Xinetd::SocketType                $socket_type,
@@ -29,14 +29,14 @@ define xinetd::service (
   Optional[Xinetd::UnlimitedInt]    $instances      = undef,
   Optional[Integer]                 $nice           = undef,
   Optional[String]                  $server_args    = undef,
-  Array                             $trusted_nets   = simplib::lookup('::simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'] }),
+  Simplib::Netlist                  $trusted_nets   = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'] }),
   Optional[Xinetd::AccessTimes]     $access_times   = undef,
   Optional[Xinetd::RpcVersion]      $rpc_version    = undef,
   Optional[Integer]                 $rpc_number     = undef,
   Optional[String]                  $env            = undef,
   Optional[String]                  $passenv        = undef,
-  Optional[String]                  $redirect_ip    = undef,
-  Optional[Integer]                 $redirect_port  = undef,
+  Optional[Simplib::IP]             $redirect_ip    = undef,
+  Optional[Simplib::Port]           $redirect_port  = undef,
   Optional[String]                  $x_bind         = undef,
   Optional[Stdlib::Absolutepath]    $banner         = undef,
   Optional[Stdlib::Absolutepath]    $banner_success = undef,
@@ -55,10 +55,9 @@ define xinetd::service (
   Optional[Xinetd::UnlimitedInt]    $rlimit_rss     = undef,
   Optional[Xinetd::UnlimitedInt]    $rlimit_stack   = undef,
   Optional[Xinetd::DenyTime]        $deny_time      = undef,
-  Boolean                           $firewall       = simplib::lookup('::simp_options::firewall', { 'default_value' => false }),
-  Boolean                           $tcpwrappers    = simplib::lookup('::simp_options::tcpwrappers', { 'default_value' => false })
+  Boolean                           $firewall       = simplib::lookup('simp_options::firewall', { 'default_value' => false }),
+  Boolean                           $tcpwrappers    = simplib::lookup('simp_options::tcpwrappers', { 'default_value' => false })
 ) {
-  validate_port($port)
   validate_umask($x_umask)
   validate_log_type($log_type)
   if ($redirect_ip and $redirect_port) { validate_net_list("${redirect_ip}:${redirect_port}") }
