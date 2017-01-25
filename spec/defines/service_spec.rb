@@ -23,8 +23,8 @@ describe 'xinetd::service' do
         context 'default parameters' do
           let(:params) { required_params }
 
-  it { is_expected.to compile.with_all_deps }
-  #        it_should_behave_like 'a xinetd::service'
+          it { is_expected.to compile.with_all_deps }
+          it_should_behave_like 'a xinetd::service'
           it do
             is_expected.to contain_file('/etc/xinetd.d/tftp').with({
               'owner'   => 'root',
