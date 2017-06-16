@@ -59,7 +59,7 @@ define xinetd::service (
   Boolean                           $tcpwrappers    = simplib::lookup('simp_options::tcpwrappers', { 'default_value' => false })
 ) {
   validate_umask($x_umask)
-  validate_log_type($log_type)
+  xinetd::validate_log_type($log_type)
   if ($redirect_ip and $redirect_port) { validate_net_list("${redirect_ip}:${redirect_port}") }
   if $x_bind                           { validate_net_list($x_bind) }
 
