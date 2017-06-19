@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'validate_log_type' do
+describe 'xinetd::validate_log_type' do
   context 'valid 1-parameter SYSLOG specification' do
     ['daemon', 'auth', 'authpriv', 'user', 'mail', 'lpr', 'news', 'uucp', 'ftp',
         'local0','local1', 'local2', 'local3', 'local4', 'local5', 'local6',
@@ -27,27 +27,37 @@ describe 'validate_log_type' do
 
   context 'invalid log specification' do
     it 'rejects array' do
-      is_expected.to run.with_params('SYSLOG', 'auth', 'warning').and_raise_error(Puppet::ParseError, /expects a single string. Got '3'./)
+      is_expected.to run.with_params('SYSLOG', 'auth', 'warning').and_raise_error(ArgumentError)
     end
 
     it 'rejects no-parameter SYSLOG log specification' do
-      is_expected.to run.with_params('SYSLOG').and_raise_error(Puppet::ParseError, /SYSLOG type expects one or two parameters. Got '0'./)
+      is_expected.to run.with_params('SYSLOG').and_raise_error(
+        /SYSLOG type expects 1 or 2 parameters. Got '0'./)
+    end
+
+    it 'rejects no-parameter FILE log specification' do
+      is_expected.to run.with_params('FILE').and_raise_error(
+        /FILE type requires at least 1 parameter/)
     end
 
     it 'rejects 4-parameter log specification' do
-      is_expected.to run.with_params('SYSLOG auth warning info').and_raise_error(Puppet::ParseError, /SYSLOG type expects one or two parameters. Got '3'./)
+      is_expected.to run.with_params('SYSLOG auth warning info').and_raise_error(
+        /SYSLOG type expects 1 or 2 parameters. Got '3'./)
     end
 
     it 'rejects invalid log type' do
-      is_expected.to run.with_params('RSYSLOG auth warning').and_raise_error(Puppet::ParseError, /log_type expected to be SYSLOG or FILE. Got 'RSYSLOG'./)
+      is_expected.to run.with_params('RSYSLOG auth warning').and_raise_error(
+        /log_type expected to be SYSLOG or FILE. Got 'RSYSLOG'./)
     end
 
     it 'rejects invalid syslog facility' do
-      is_expected.to run.with_params('SYSLOG oops').and_raise_error(Puppet::ParseError, /facility not recognized.* Got 'oops'./)
+      is_expected.to run.with_params('SYSLOG oops').and_raise_error(
+        /facility not recognized.* Got 'oops'./)
     end
 
     it 'rejects invalid syslog level' do
-      is_expected.to run.with_params('SYSLOG local6 oops').and_raise_error(Puppet::ParseError, /level not recognized.* Got 'oops'./)
+      is_expected.to run.with_params('SYSLOG local6 oops').and_raise_error(
+       /level not recognized.* Got 'oops'./)
     end
   end
 end

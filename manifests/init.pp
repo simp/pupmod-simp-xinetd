@@ -32,7 +32,7 @@ class xinetd (
 
   #TODO Fix the inconsistent use of strings versus arrays.  Some of these
   # config items are strings that contain a space-separated list of items.
-  validate_log_type($log_type)
+  xinetd::validate_log_type($log_type)
   if $x_bind  { validate_net_list($x_bind) }
   if $x_umask { validate_umask($x_umask) }
   if $no_access { validate_net_list($no_access) }

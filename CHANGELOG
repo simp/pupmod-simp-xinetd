@@ -1,3 +1,6 @@
+* Fri Jun 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 4.0.2-0
+- Update to Puppet 4 custom functions
+
 * Tue Jan 24 2017 Nick Miller <nick.miller@onyxpoint.com> - 4.0.1-0
 - Updated data types to use new Simplib types
 - Corrected simp_options lookups to not have a context prefix of '::'
