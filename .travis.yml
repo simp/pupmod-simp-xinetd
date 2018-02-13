@@ -8,48 +8,85 @@
 # PE 2017.2   4.10  2.1.9  TBD
 ---
 language: ruby
-sudo: false
 cache: bundler
-before_script:
-  - bundle update
+sudo: false
+
 bundler_args: --without development system_tests --path .vendor
-before_install: rm Gemfile.lock || true
-script:
-  - bundle exec rake test
+
+
 notifications:
   email: false
-rvm:
-  - 2.1.9
-env:
-  global:
-    - STRICT_VARIABLES=yes
-  matrix:
-    - PUPPET_VERSION="~> 4.8.2" FORGE_PUBLISH=true
-    - PUPPET_VERSION="~> 4.10.0"
-    - PUPPET_VERSION="~> 4.9.2"
-    - PUPPET_VERSION="~> 4.7.0"
-matrix:
-  fast_finish: true
 
-before_deploy:
-  - 'bundle exec rake metadata_lint'
-  - 'bundle exec rake clobber'
-  - 'bundle exec rake spec_clean'
-  - "export PUPMOD_METADATA_VERSION=`ruby -r json -e \"puts JSON.parse(File.read('metadata.json')).fetch('version')\"`"
-  - '[[ $TRAVIS_TAG =~ ^simp-${PUPMOD_METADATA_VERSION}$|^${PUPMOD_METADATA_VERSION}$ ]]'
-deploy:
-  - provider: puppetforge
-    user: simp
-    password:
-        secure: "swR/ubedBph+fFfQKQP1b/x1oISGjnH3U8N1u3cNBVpD87zmPdR1qEkxmoYl5ZGp4NVMu9gBMgN80tS69AUfSIIrPGRynU0SzZ8ssI80tpzPlOXzG1JWx29Hogvgay/XUFTi5oCRDPA+uahI+9V7itLc2lerdhJClJF2OkZ3sISTFp1zAGSA8/3zvOn+5mmYs6Fecv//nOTAvLjBgpWcG/FJCVcIxoeW9dIPzj9EmL0iKwHzzqElfcbrqNX/FE+rgELPfNVdS/OXQz46Kgoz471jyRWd1qwLwDE/PvvpZs38zdKyDuOtpDPkaCbCSzxTEpUBAfte4bFAlDJufnlnudwMKSZA8+OYXwpn7607W0+KDtNQZ/w4WZ1dBuX60LdcetTmxoJWn5mshR00BSheiz1cYjQq+IQn2bVA7Y9LOqL/nLU1rrkbtI/SQBvvmXPic8D+92RXDUumdIZ0gyf2hv0d31dUtCglsBD966mI9gFyfDtl5O1+hFXscHGVxTWingwD4AylGpyy7J3yI28WZyz7PfTPu1nLjQ6ZbbFL5u0C4Ka8lSrkjlDsVaoD/eV13If7arlPlqZpmzy7KBMBCPtj9ez1Ufp41fDceejCIpf1PGeuhgAkR3xCrV+dgEuvVDq3oj9oqq+MsmiUATSc/7Lhhff7tUhIUrtN4xlkbf0="
-    on:
-      tags: true
+addons:
+  apt:
+    packages:
+      - rpm
+
+before_install:
+  - rm -f Gemfile.lock
+
+jobs:
+  allow_failures:
+    - env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 5.0"
+
+  include:
+    - stage: check
+      rvm: 2.4.1
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 5"
+      script:
+        - bundle exec rake check:dot_underscore
+        - bundle exec rake check:test_file
+        - bundle exec rake pkg:check_version
+        - bundle exec rake lint
+        - bundle exec rake metadata_lint
+        - bundle exec rake pkg:compare_latest_tag
+        - bundle exec rake pkg:create_tag_changelog
+        - bundle exec puppet module build
+
+    - stage: spec
+      rvm: 2.4.1
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 5.0"
+      script:
+        - bundle exec rake spec
+
+    - stage: spec
       rvm: 2.1.9
-      condition: '($SKIP_FORGE_PUBLISH != true) && ($FORGE_PUBLISH = true)'
-  - provider: releases
-    api_key:
-        secure: "ArYe+u1iF1j1X7NMc+4F56Kbv5PmrEPh2We+TFGiS+EadYLsiGyB7tz8IltgFK5HLAK/VCe4VHzTAhJBJ9/0mWUx9F+CZI7lTR9o20DWIiwBfG/TZ0++uh8jkGHr5skUWFwR6ola3+e9M8I5xz/VT5lsGMEneR2XHhTKafgftlfJSkXfyDBi+cCUURbokk3zPtyGjiUd/MRDZWxhLPgVbE9y/E09D1dFxcT2P75vA1/ZPvqpAP5WGbapCiRj2MTpLxBJ9kJ61CwGwiY4c/0wSwiMmSYh25ZuqcA7QzJKyyFOiS+zQd8ftA/At9m75V66lSvMB8hMxRr1aqwcy2lDBRjWDhoJZ7oBRYxTQ5S11wpAt8ak2B7lWqTsrFPCXXEXWPG7VHaiwlvfRsan+EvGutcrGrFAO9etRmxdi5UNk/uZNqbZJkaRTH+Zb5dsmaXaQW7VqnGLOg25980kN6VBjOfzZr2aykEhBskn4lF+SAdxGIxxYnmaTcXybc/wPmBJaRah3AIG6LvweONXFAPR01HlZCY1OusO+qH3Axv69VwMEQot/HHieDHEW1ZC1eKHDOoTCzywoN2pHyasbhRe9xe2ee5Yxar6hgzYRdCRQHuoVuxOvQRDvBUbwUQmYITEXWD9LylMkv21K6rAz5B9UjTBvcMaXbOHLG8zorfEuKo="
-    skip_cleanup: true
-    on:
-      tags: true
-      condition: '($SKIP_FORGE_PUBLISH != true) && ($FORGE_PUBLISH = true)'
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.10.0"
+      script:
+        - bundle exec rake spec
+
+    - stage: spec
+      rvm: 2.1.9
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.9.2"
+      script:
+        - bundle exec rake spec
+
+    - stage: spec
+      rvm: 2.1.9
+      env: STRICT_VARIABLES=yes TRUSTED_NODE_DATA=yes PUPPET_VERSION="~> 4.7.0"
+      script:
+        - bundle exec rake spec
+
+    - stage: deploy
+      rvm: 2.4.1
+      script:
+        - true
+      before_deploy:
+        - "export PUPMOD_METADATA_VERSION=`ruby -r json -e \"puts JSON.parse(File.read('metadata.json')).fetch('version')\"`"
+        - '[[ $TRAVIS_TAG =~ ^simp-${PUPMOD_METADATA_VERSION}$|^${PUPMOD_METADATA_VERSION}$ ]]'
+      deploy:
+        - provider: releases
+          api_key:
+            secure: "ArYe+u1iF1j1X7NMc+4F56Kbv5PmrEPh2We+TFGiS+EadYLsiGyB7tz8IltgFK5HLAK/VCe4VHzTAhJBJ9/0mWUx9F+CZI7lTR9o20DWIiwBfG/TZ0++uh8jkGHr5skUWFwR6ola3+e9M8I5xz/VT5lsGMEneR2XHhTKafgftlfJSkXfyDBi+cCUURbokk3zPtyGjiUd/MRDZWxhLPgVbE9y/E09D1dFxcT2P75vA1/ZPvqpAP5WGbapCiRj2MTpLxBJ9kJ61CwGwiY4c/0wSwiMmSYh25ZuqcA7QzJKyyFOiS+zQd8ftA/At9m75V66lSvMB8hMxRr1aqwcy2lDBRjWDhoJZ7oBRYxTQ5S11wpAt8ak2B7lWqTsrFPCXXEXWPG7VHaiwlvfRsan+EvGutcrGrFAO9etRmxdi5UNk/uZNqbZJkaRTH+Zb5dsmaXaQW7VqnGLOg25980kN6VBjOfzZr2aykEhBskn4lF+SAdxGIxxYnmaTcXybc/wPmBJaRah3AIG6LvweONXFAPR01HlZCY1OusO+qH3Axv69VwMEQot/HHieDHEW1ZC1eKHDOoTCzywoN2pHyasbhRe9xe2ee5Yxar6hgzYRdCRQHuoVuxOvQRDvBUbwUQmYITEXWD9LylMkv21K6rAz5B9UjTBvcMaXbOHLG8zorfEuKo="
+          skip_cleanup: true
+          on:
+            tags: true
+            condition: '($SKIP_FORGE_PUBLISH != true)'
+        - provider: puppetforge
+          user: simp
+          password:
+            secure: "swR/ubedBph+fFfQKQP1b/x1oISGjnH3U8N1u3cNBVpD87zmPdR1qEkxmoYl5ZGp4NVMu9gBMgN80tS69AUfSIIrPGRynU0SzZ8ssI80tpzPlOXzG1JWx29Hogvgay/XUFTi5oCRDPA+uahI+9V7itLc2lerdhJClJF2OkZ3sISTFp1zAGSA8/3zvOn+5mmYs6Fecv//nOTAvLjBgpWcG/FJCVcIxoeW9dIPzj9EmL0iKwHzzqElfcbrqNX/FE+rgELPfNVdS/OXQz46Kgoz471jyRWd1qwLwDE/PvvpZs38zdKyDuOtpDPkaCbCSzxTEpUBAfte4bFAlDJufnlnudwMKSZA8+OYXwpn7607W0+KDtNQZ/w4WZ1dBuX60LdcetTmxoJWn5mshR00BSheiz1cYjQq+IQn2bVA7Y9LOqL/nLU1rrkbtI/SQBvvmXPic8D+92RXDUumdIZ0gyf2hv0d31dUtCglsBD966mI9gFyfDtl5O1+hFXscHGVxTWingwD4AylGpyy7J3yI28WZyz7PfTPu1nLjQ6ZbbFL5u0C4Ka8lSrkjlDsVaoD/eV13If7arlPlqZpmzy7KBMBCPtj9ez1Ufp41fDceejCIpf1PGeuhgAkR3xCrV+dgEuvVDq3oj9oqq+MsmiUATSc/7Lhhff7tUhIUrtN4xlkbf0="
+          on:
+            tags: true
+            rvm: 2.4.1
+            condition: '($SKIP_FORGE_PUBLISH != true)'
