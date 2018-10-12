@@ -27,7 +27,8 @@ class xinetd (
   Optional[Stdlib::Absolutepath]   $banner_fail    = undef,
   Enum['yes','no']                 $groups         = 'no',
   Tuple[Integer,Integer]           $cps            = [25,30],
-  Optional[Float]                  $max_load       = undef
+  Optional[Float]                  $max_load       = undef,
+  String                           $package_ensure = simplib::lookup('simp_options::package_ensure', { 'default_value' => 'installed' }),
 ) {
 
   #TODO Fix the inconsistent use of strings versus arrays.  Some of these
@@ -55,7 +56,9 @@ class xinetd (
     require => Package['xinetd']
   }
 
-  package { 'xinetd': ensure => 'latest' }
+  package { 'xinetd':
+    ensure => $package_ensure
+  }
 
   service { 'xinetd':
     ensure    => 'running',

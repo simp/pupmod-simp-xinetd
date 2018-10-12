@@ -1,5 +1,8 @@
-* Fri Aug 24 2018 Nick Miller <nick.miller@onyxpoint.com> - 4.0.3-0
+* Fri Aug 24 2018 Nick Miller <nick.miller@onyxpoint.com> - 4.1.0-0
 - Add support for Puppet 5 and OEL
+- Added $package_ensure parameter
+  - Changed the package from 'latest' to 'installed'
+  - It will also respect `simp_options::package_ensure`
 
 * Fri Jun 16 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 4.0.2-0
 - Update to Puppet 4 custom functions
