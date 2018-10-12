@@ -12,7 +12,7 @@ shared_examples_for 'a xinetd class' do
     })
   end
   it { is_expected.to contain_service('xinetd') }
-  it { is_expected.to contain_package('xinetd').with({:ensure => 'latest'}) }
+  it { is_expected.to contain_package('xinetd').with({:ensure => 'installed'}) }
   it { is_expected.to contain_package('xinetd').that_comes_before('Service[xinetd]') }
   it { is_expected.to contain_package('xinetd').that_comes_before('File[/etc/xinetd.conf]') }
   it { is_expected.to contain_package('xinetd').that_comes_before('File[/etc/xinetd.d]') }
