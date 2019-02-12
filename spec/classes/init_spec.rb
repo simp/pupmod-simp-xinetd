@@ -59,7 +59,7 @@ EOM
             :per_source     => 'UNLIMITED',
             :x_umask        => '0700',
             :trusted_nets   => ['1.2.3.0/24', '10.0.2.5', '2001:db8:a::/64'],
-	    :no_access      => ['1.2.3.4', '2.3.4.5'],
+            :no_access      => ['1.2.3.4', '2.3.4.5'],
             :passenv        => 'SOMEENVVAR1 SOMENVVAR2',
             :disabled       => ['some_disabled_id1', 'some_disabled_id2'],
             :disable        => 'yes',

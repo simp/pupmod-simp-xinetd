@@ -1,60 +1,50 @@
 defaults
 {
-<% if !@log_type.nil? then -%>
   log_type       = <%= @log_type %>
-<% end -%>
-<% if !@x_bind.nil? then -%>
+<% unless @x_bind.nil? -%>
   bind           = <%= @x_bind %>
 <% end -%>
-<% if !@per_source.nil? then -%>
+<% unless @per_source.nil? -%>
   per_source     = <%= @per_source %>
 <% end -%>
-<% if !@x_umask.nil? then -%>
+<% unless @x_umask.nil? -%>
   umask          = <%= @x_umask %>
 <% end -%>
-<% if !@log_on_success.nil? then -%>
+<% unless @log_on_success.empty? -%>
   log_on_success = <%= @log_on_success.join(' ') %>
 <% end -%>
-<% if !@log_on_failure.nil? then -%>
+<% unless @log_on_failure.empty? -%>
   log_on_failure = <%= @log_on_failure.join(' ') %>
 <% end -%>
-<% if !@trusted_nets.empty? then -%>
-  only_from      = <%=scope.function_nets2cidr(@trusted_nets).join(' ') %>
+<% unless @_only_from.empty? -%>
+  only_from      = <%= @_only_from.join(' ') %>
 <% end -%>
-<% if !@no_access.nil? and !@no_access.empty? then -%>
+<% if !@no_access.nil? and !@no_access.empty? -%>
   no_access      = <%= @no_access.join(' ') %>
 <% end -%>
-<% if !@passenv.nil? then -%>
+<% unless @passenv.nil? -%>
   passenv        = <%= @passenv %>
 <% end -%>
-<% if !@instances.nil? then -%>
   instances      = <%= @instances %>
-<% end -%>
-<% if !@disabled.nil?  and !@no_access.empty? then -%>
+<% if !@disabled.nil? and !@disabled.empty? -%>
   disabled       = <%= @disabled.join(' ') %>
 <% end -%>
-<% if !@disable.nil? then -%>
+<% unless @disable.nil? -%>
   disable        = <%= @disable %>
 <% end -%>
-<% if !@enabled.nil? and !@enabled.empty? then -%>
+<% if !@enabled.nil? and !@enabled.empty? -%>
   enabled        = <%= @enabled.join(' ') %>
 <% end -%>
-<% if !@banner.nil? then -%>
   banner         = <%= @banner %>
-<% end -%>
-<% if !@banner_success.nil? then -%>
+<% unless @banner_success.nil? -%>
   banner_success = <%= @banner_success %>
 <% end -%>
-<% if !@banner_fail.nil? then -%>
+<% unless @banner_fail.nil? -%>
   banner_fail    = <%= @banner_fail %>
 <% end -%>
-<% if !@groups.nil? then -%>
   groups         = <%= @groups %>
-<% end -%>
-<% if !@cps.nil? then -%>
   cps            = <%= @cps.join(' ') %>
-<% end -%>
-<% if !@max_load.nil? then -%>
+<% unless @max_load.nil? -%>
   max_load       = <%= @max_load %>
 <% end -%>
 }

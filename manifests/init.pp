@@ -6,13 +6,13 @@
 #
 # Explanations of the options can be found in the xinetd.conf(5) man page.
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-xinetd/graphs/contributors
 #
 class xinetd (
   String                           $log_type       = 'SYSLOG authpriv',
   Optional[String]                 $x_bind         = undef,
   Optional[Xinetd::UnlimitedInt]   $per_source     = undef,
-  Optional[String]                 $x_umask        = undef,
+  Optional[Simplib::Umask]         $x_umask        = undef,
   Array[Xinetd::SuccessLogOption]  $log_on_success = ['HOST','PID','DURATION','TRAFFIC'],
   Array[Xinetd::FailureLogOption]  $log_on_failure = ['HOST'],
   Array[String]                    $trusted_nets   = lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'] }),
@@ -34,9 +34,10 @@ class xinetd (
   #TODO Fix the inconsistent use of strings versus arrays.  Some of these
   # config items are strings that contain a space-separated list of items.
   xinetd::validate_log_type($log_type)
-  if $x_bind  { validate_net_list($x_bind) }
-  if $x_umask { validate_umask($x_umask) }
-  if $no_access { validate_net_list($no_access) }
+  if $x_bind  { simplib::validate_net_list($x_bind) }
+  if $no_access { simplib::validate_net_list($no_access) }
+
+  $_only_from = simplib::nets2cidr($trusted_nets)
 
   file { '/etc/xinetd.conf':
     owner   => 'root',

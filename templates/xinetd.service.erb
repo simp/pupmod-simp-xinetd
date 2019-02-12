@@ -6,114 +6,118 @@ service <%= @name %>
     wait = <%= @x_wait %>
     disable = <%= @disable %>
     log_type = <%= @log_type %>
+<% unless @log_on_success.empty? -%>
     log_on_success = <%= @log_on_success.join(' ') %>
+<% end -%>
+<% unless @log_on_failure.empty? -%>
     log_on_failure = <%= @log_on_failure.join(' ') %>
+<% end -%>
     port = <%= @port %>
     umask = <%= @x_umask %>
-<% if ! @x_id.nil? then -%>
+<% unless @x_id.nil? -%>
     id = <%= @x_id %>
 <% end -%>
-<% if ! @x_type.nil? then -%>
+<% unless @x_type.nil? -%>
     type = <%= @x_type %>
 <% end -%>
 <% if ! @flags.nil? and ! @flags.empty? then -%>
     flags = <%= @flags.join(' ') %>
 <% end -%>
-<% if ! @protocol.nil? then -%>
+<% unless @protocol.empty? -%>
     protocol = <%= @protocol %>
 <% end -%>
-<% if ! @group.nil? then -%>
+<% unless @group.nil? -%>
     group = <%= @group %>
 <% end -%>
-<% if ! @nice.nil? then -%>
+<% unless @nice.nil? -%>
     nice = <%= @nice %>
 <% end -%>
-<% if ! @server_args.nil? then -%>
+<% unless @server_args.nil? -%>
     server_args = <%= @server_args %>
 <% end -%>
-<% if ! @libwrap.nil? then -%>
+<% unless @libwrap.nil? -%>
     libwrap = <%= @libwrap %>
 <% end -%>
-<% if ! @trusted_nets.empty? then -%>
-    only_from = <%= scope.function_nets2cidr(@trusted_nets).join(' ') %>
+<% unless @_only_from.empty? -%>
+    only_from = <%= @_only_from.join(' ') %>
 <% end -%>
-<% if ! @instances.nil? then -%>
+<% unless @instances.nil? -%>
     instances = <%= @instances %>
 <% end -%>
-<% if ! @access_times.nil? then -%>
+<% unless @access_times.nil? -%>
     access_times = <%= @access_times %>
 <% end -%>
-<% if ! @rpc_version.nil? then -%>
+<% unless @rpc_version.nil? -%>
     rpc_version = <%= @rpc_version %>
 <% end -%>
-<% if ! @rpc_number.nil? then -%>
+<% unless @rpc_number.nil? -%>
     rpc_number = <%= @rpc_number %>
 <% end -%>
-<% if ! @env.nil? then -%>
+<% unless @env.nil? -%>
     env = <%= @env %>
 <% end -%>
-<% if ! @passenv.nil? then -%>
+<% unless @passenv.nil? -%>
     passenv = <%= @passenv %>
 <% end -%>
-<% if ! @redirect_ip.nil? then -%>
+<% unless @redirect_ip.nil? -%>
     redirect = <%= @redirect_ip -%>
-<%  if ! @redirect_port.nil? then -%>
+<%  unless @redirect_port.nil? -%>
  <%=  @redirect_port -%>
 <%  end -%>
 <% end %>
-<% if ! @x_bind.nil? then -%>
+<% unless @x_bind.nil? -%>
     bind = <%= @x_bind %>
 <% end -%>
-<% if ! @banner.nil? then -%>
+<% unless @banner.nil? -%>
     banner = <%= @banner %>
 <% end -%>
-<% if ! @banner_success.nil? then -%>
+<% unless @banner_success.nil? -%>
     banner_success = <%= @banner_success %>
 <% end -%>
-<% if ! @banner_fail.nil? then -%>
+<% unless @banner_fail.nil? -%>
     banner_fail = <%= @banner_fail %>
 <% end -%>
-<% if ! @per_source.nil? then -%>
+<% unless @per_source.nil? -%>
     per_source = <%= @per_source %>
 <% end -%>
-<% if ! @cps.nil? then -%>
+<% unless @cps.nil? -%>
     cps = <%= @cps.join(' ') %>
 <% end -%>
-<% if ! @max_load.nil? then -%>
+<% unless @max_load.nil? -%>
     max_load = <%= @max_load %>
 <% end -%>
-<% if ! @groups.nil? then -%>
+<% unless @groups.nil? -%>
     groups = <%= @groups %>
 <% end -%>
-<% if ! @mdns.nil? then -%>
+<% unless @mdns.nil? -%>
     mdns = <%= @mdns %>
 <% end -%>
 <% if ! @enabled.nil? and ! @enabled.empty? then -%>
     enabled = <%= @enabled.join(' ') %>
 <% end -%>
-<% if ! @rlimit_as.nil? then -%>
+<% unless @rlimit_as.nil? -%>
     rlimit_as = <%= @rlimit_as %>
 <% end -%>
-<% if ! @rlimit_cpu.nil? then -%>
+<% unless @rlimit_cpu.nil? -%>
     rlimit_cpu = <%= @rlimit_cpu %>
 <% end -%>
-<% if ! @rlimit_data.nil? then -%>
+<% unless @rlimit_data.nil? -%>
     rlimit_data = <%= @rlimit_data %>
 <% end -%>
-<% if ! @rlimit_rss.nil? then -%>
+<% unless @rlimit_rss.nil? -%>
     rlimit_rss = <%= @rlimit_rss %>
 <% end -%>
-<% if ! @rlimit_stack.nil? then -%>
+<% unless @rlimit_stack.nil? -%>
     rlimit_stack = <%= @rlimit_stack %>
 <% end -%>
-<% if ! @deny_time.nil? then -%>
+<% unless @deny_time.nil? -%>
     deny_time = <%= @deny_time %>
 <% end -%>
 }
 
-<% if ! @include.nil? then -%>
+<% unless @include.nil? -%>
 include <%= @include %>
 <% end -%>
-<% if ! @includedir.nil? then -%>
+<% unless @includedir.nil? -%>
 includedir <%= @includedir %>
 <% end -%>
