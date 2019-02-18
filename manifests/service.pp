@@ -6,7 +6,7 @@
 # Items prefixed with 'x_' were reserved words in ERB.
 # * xinetd/xinetd.service.erb
 #
-# @author Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author https://github.com/simp/pupmod-simp-xinetd/graphs/contributors
 #
 define xinetd::service (
   String                            $server,
@@ -18,7 +18,7 @@ define xinetd::service (
   Optional[String]                  $libwrap_name   = undef,
   Optional[String]                  $libwrap        = undef,
   String                            $user           = 'root',
-  String                            $x_umask        = '027',
+  Simplib::Umask                    $x_umask        = '027',
   String                            $log_type       = 'SYSLOG authpriv',
   Array[Xinetd::SuccessLogOption]   $log_on_success = ['HOST','PID','DURATION','TRAFFIC'],
   Array[Xinetd::FailureLogOption]   $log_on_failure = ['HOST'],
@@ -58,10 +58,10 @@ define xinetd::service (
   Boolean                           $firewall       = simplib::lookup('simp_options::firewall', { 'default_value' => false }),
   Boolean                           $tcpwrappers    = simplib::lookup('simp_options::tcpwrappers', { 'default_value' => false })
 ) {
-  validate_umask($x_umask)
   xinetd::validate_log_type($log_type)
-  if ($redirect_ip and $redirect_port) { validate_net_list("${redirect_ip}:${redirect_port}") }
-  if $x_bind                           { validate_net_list($x_bind) }
+  if ($redirect_ip and $redirect_port) { simplib::validate_net_list("${redirect_ip}:${redirect_port}") }
+  if $x_bind                           { simplib::validate_net_list($x_bind) }
+  $_only_from = simplib::nets2cidr($trusted_nets)
 
   include '::xinetd'
 

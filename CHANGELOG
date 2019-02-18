@@ -1,3 +1,14 @@
+* Tue Feb 12 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 4.1.1-0
+- Fixed bug in which the xinetd::disabled parameter would only
+  be included in xinetd.conf if the xinetd::no_access parameter
+  was not empty.
+- Use Simplib::Umask data type in lieu of validate_umask(),
+  a deprecated simplib Puppet 3 function.
+- Use simplib::validate_net_list() in lieu of validate_net_list(),
+  a deprecated simplib Puppet 3 function.
+- Use simplib::nets2cidr() in lieu of nets2cidr(),
+  a deprecated simplib Puppet 3 function.
+
 * Fri Aug 24 2018 Nick Miller <nick.miller@onyxpoint.com> - 4.1.0-0
 - Add support for Puppet 5 and OEL
 - Added $package_ensure parameter
