@@ -8,6 +8,7 @@
   a deprecated simplib Puppet 3 function.
 - Use simplib::nets2cidr() in lieu of nets2cidr(),
   a deprecated simplib Puppet 3 function.
+- Expanded the upper limits of the stdlib Puppet module version
 
 * Fri Aug 24 2018 Nick Miller <nick.miller@onyxpoint.com> - 4.1.0-0
 - Add support for Puppet 5 and OEL
