@@ -8,6 +8,7 @@ shared_examples_for 'a xinetd class' do
       'owner'   => 'root',
       'group'   => 'root',
       'mode'    => '0640',
+      'purge'   => 'false',
       'recurse' => 'true'
     })
   end
