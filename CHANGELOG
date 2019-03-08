@@ -1,3 +1,7 @@
+* Thu Mar 07 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.1-0
+- Allow users to purge unmanaged xinetd services
+- Add support for Puppet 6
+
 * Tue Feb 12 2019 Liz Nemsick <lnemsick.simp@gmail.com> - 4.1.1-0
 - Fixed bug in which the xinetd::disabled parameter would only
   be included in xinetd.conf if the xinetd::no_access parameter
