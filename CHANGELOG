@@ -1,3 +1,6 @@
+* Tue Apr 23 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 4.1.2-0
+- Updated .travis.yml, .gitlab-ci.yml, .ruby-version
+
 * Thu Mar 07 2019 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.1-0
 - Allow users to purge unmanaged xinetd services
 - Add support for Puppet 6
