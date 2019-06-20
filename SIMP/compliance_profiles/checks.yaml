@@ -7,15 +7,15 @@ checks:
       value: "/etc/issue.net"
     type: puppet-class-parameter
     controls:
-      nist_800_53_rev4: true
-      nist_800_53_rev4:AC-8: true
+      nist_800_53:rev4: true
+      nist_800_53:rev4:AC-8: true
       disa_stig: true
       RHEL-07-010030: true
       SRG-OS-000023-GPOS-00006: true
       SRG-OS-000024-GPOS-00007: true
       cci:CCI-000048: true
     identifiers:
-      nist_800_53_rev4:
+      nist_800_53:rev4:
       - AC-8
       disa_stig:
       - RHEL-07-010030
@@ -28,10 +28,10 @@ checks:
       value: SYSLOG authpriv
     type: puppet-class-parameter
     controls:
-      nist_800_53_rev4: true
-      nist_800_53_rev4:AU-3:2: true
-      nist_800_53_rev4:AU-4:1: true
-      nist_800_53_rev4:AU-9: true
+      nist_800_53:rev4: true
+      nist_800_53:rev4:AU-3:2: true
+      nist_800_53:rev4:AU-4:1: true
+      nist_800_53:rev4:AU-9: true
       disa_stig: true
       RHEL-07-030310: true
       RHEL-07-030620: true
@@ -40,7 +40,7 @@ checks:
       cci:CCI-002234: true
       cci:CCI-000172: true
     identifiers:
-      nist_800_53_rev4:
+      nist_800_53:rev4:
       - AU-3:2
       - AU-4:1
       - AU-9
