@@ -156,3 +156,7 @@ pup5.5.10-unit:
 pup6-unit:
   <<: *pup_6
   <<: *unit_tests
+
+# Acceptance tests
+# ==============================================================================
+# This module does not yet have acceptance tests.
