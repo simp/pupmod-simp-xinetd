@@ -1,3 +1,6 @@
+* Fri Aug 02 2019 Robert Vincent <pillarsdotnet@gmail.com> - 4.2.1-0
+- Support puppetlabs/stdlib 6.x.
+
 * Mon Jun 03 2019 Steven Pritchard <steven.pritchard@onyxpoint.com> - 4.2.0-0
 - Add v2 compliance_markup data
 - Add compliance engine unit tests
