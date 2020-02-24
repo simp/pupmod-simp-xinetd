@@ -20,7 +20,7 @@ service <%= @name %>
 <% unless @x_type.nil? -%>
     type = <%= @x_type %>
 <% end -%>
-<% if ! @flags.nil? and ! @flags.empty? then -%>
+<% unless (@flags.nil? || @flags.empty?) -%>
     flags = <%= @flags.join(' ') %>
 <% end -%>
 <% unless @protocol.empty? -%>
@@ -92,7 +92,7 @@ service <%= @name %>
 <% unless @mdns.nil? -%>
     mdns = <%= @mdns %>
 <% end -%>
-<% if ! @enabled.nil? and ! @enabled.empty? then -%>
+<% unless (@enabled.nil? || @enabled.empty?) -%>
     enabled = <%= @enabled.join(' ') %>
 <% end -%>
 <% unless @rlimit_as.nil? -%>
