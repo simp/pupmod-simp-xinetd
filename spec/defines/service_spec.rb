@@ -39,7 +39,7 @@ service tftp
     wait = yes
     disable = no
     log_type = SYSLOG authpriv
-    log_on_success = HOST PID DURATION TRAFFIC
+    log_on_success = HOST PID DURATION
     log_on_failure = HOST
     port = 69
     umask = 027
@@ -106,7 +106,7 @@ service tftp
     wait = yes
     disable = no
     log_type = SYSLOG authpriv
-    log_on_success = HOST PID DURATION TRAFFIC
+    log_on_success = HOST PID DURATION
     log_on_failure = HOST
     port = 69
     umask = 027
