@@ -189,7 +189,7 @@ pup6-oel:
   <<: *pup_6
   <<: *acceptance_base
   script:
-    - 'bundle exec rake beaker:suites[defaulti,oel]'
+    - 'bundle exec rake beaker:suites[default,oel]'
 
 pup6-fips:
   <<: *pup_6
