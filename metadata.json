@@ -17,38 +17,45 @@
       "version_requirement": ">= 4.13.1 < 7.0.0"
     },
     {
-      "name": "simp/iptables",
-      "version_requirement": ">= 6.0.0 < 7.0.0"
-    },
-    {
       "name": "simp/simplib",
-      "version_requirement": ">= 3.7.0 < 4.0.0"
-    },
-    {
-      "name": "simp/tcpwrappers",
-      "version_requirement": ">= 6.0.0 < 7.0.0"
+      "version_requirement": ">= 3.7.0 < 5.0.0"
     }
   ],
+  "simp": {
+    "optional_dependencies": [
+      {
+        "name": "simp/iptables",
+        "version_requirement": ">= 6.0.0 < 7.0.0"
+      },
+      {
+        "name": "simp/tcpwrappers",
+        "version_requirement": ">= 6.0.0 < 7.0.0"
+      }
+    ]
+  },
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     }
   ],

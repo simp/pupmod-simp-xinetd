@@ -39,7 +39,7 @@ describe 'xinetd' do
 defaults
 {
   log_type       = SYSLOG authpriv
-  log_on_success = HOST PID DURATION TRAFFIC
+  log_on_success = HOST PID DURATION
   log_on_failure = HOST
   only_from      = 127.0.0.1 ::1
   instances      = 60
@@ -82,7 +82,7 @@ defaults
   bind           = 1.2.3.6
   per_source     = UNLIMITED
   umask          = 0700
-  log_on_success = HOST PID DURATION TRAFFIC
+  log_on_success = HOST PID DURATION
   log_on_failure = HOST
   only_from      = 1.2.3.0/24 10.0.2.5 2001:db8:a::/64
   no_access      = 1.2.3.4 2.3.4.5

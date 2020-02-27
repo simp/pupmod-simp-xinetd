@@ -1,5 +1,5 @@
-# Set up xinetd
-# This is incomplete but should suffice for basic purposes.
+# @summary Set up xinetd
+# This is incomplete but should suffice for most purposes.
 #
 # NOTE: Items prefixed with 'x_' were reserved words in ERB.
 # * xinetd/xinetd.conf.erb
@@ -39,7 +39,7 @@ class xinetd (
   Optional[String[1]]             $x_bind         = undef,
   Optional[Xinetd::UnlimitedInt]  $per_source     = undef,
   Optional[Simplib::Umask]        $x_umask        = undef,
-  Array[Xinetd::SuccessLogOption] $log_on_success = ['HOST','PID','DURATION','TRAFFIC'],
+  Array[Xinetd::SuccessLogOption] $log_on_success = ['HOST','PID','DURATION'],
   Array[Xinetd::FailureLogOption] $log_on_failure = ['HOST'],
   Simplib::Netlist                $trusted_nets   = lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1', '::1'] }),
   Optional[Array[String[1]]]      $no_access      = undef,
@@ -96,5 +96,4 @@ class xinetd (
     restart   => '( /bin/ps -C xinetd && /sbin/service xinetd reload ) || /sbin/service xinetd start',
     require   => Package['xinetd']
   }
-
 }
