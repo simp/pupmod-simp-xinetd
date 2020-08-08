@@ -8,9 +8,10 @@ fixtures:
     concat: https://github.com/simp/puppetlabs-concat
     firewalld:
       repo: https://github.com/simp/pupmod-voxpupuli-firewalld
-      ref: v4.1.0
+      ref: v4.3.0
     iptables: https://github.com/simp/pupmod-simp-iptables
     simp_options: https://github.com/simp/pupmod-simp-simp_options
+    simp_firewalld: https://github.com/simp/pupmod-simp-simp_firewalld
     simplib: https://github.com/simp/pupmod-simp-simplib
     stdlib: https://github.com/simp/puppetlabs-stdlib
     tcpwrappers: https://github.com/simp/pupmod-simp-tcpwrappers
