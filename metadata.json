@@ -1,6 +1,6 @@
 {
   "name": "simp-xinetd",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "author": "SIMP Team",
   "summary": "Manages xinetd",
   "license": "Apache-2.0",
@@ -37,7 +37,6 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "6",
         "7",
         "8"
       ]
@@ -45,7 +44,6 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
         "7",
         "8"
       ]
@@ -53,7 +51,6 @@
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "6",
         "7",
         "8"
       ]
