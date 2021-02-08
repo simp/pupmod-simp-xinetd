@@ -6,9 +6,7 @@ fixtures:
       puppet_version: '>= 6.0.0'
     compliance_markup: https://github.com/simp/pupmod-simp-compliance_markup
     concat: https://github.com/simp/puppetlabs-concat
-    firewalld:
-      repo: https://github.com/simp/pupmod-voxpupuli-firewalld
-      ref: v4.3.0
+    firewalld: https://github.com/simp/pupmod-voxpupuli-firewalld
     iptables: https://github.com/simp/pupmod-simp-iptables
     simp_options: https://github.com/simp/pupmod-simp-simp_options
     simp_firewalld: https://github.com/simp/pupmod-simp-simp_firewalld
