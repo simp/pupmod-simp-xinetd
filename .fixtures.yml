@@ -2,16 +2,16 @@
 fixtures:
   repositories:
     augeas_core:
-      repo: 'https://github.com/simp/pupmod-puppetlabs-augeas_core'
-      puppet_version: '>= 6.0.0'
-    compliance_markup: https://github.com/simp/pupmod-simp-compliance_markup
-    concat: https://github.com/simp/puppetlabs-concat
-    firewalld: https://github.com/simp/pupmod-voxpupuli-firewalld
-    iptables: https://github.com/simp/pupmod-simp-iptables
-    simp_options: https://github.com/simp/pupmod-simp-simp_options
-    simp_firewalld: https://github.com/simp/pupmod-simp-simp_firewalld
-    simplib: https://github.com/simp/pupmod-simp-simplib
-    stdlib: https://github.com/simp/puppetlabs-stdlib
-    tcpwrappers: https://github.com/simp/pupmod-simp-tcpwrappers
+      repo: https://github.com/simp/pupmod-puppetlabs-augeas_core.git
+      puppet_version: ">= 6.0.0"
+    compliance_markup: https://github.com/simp/pupmod-simp-compliance_markup.git
+    concat: https://github.com/simp/puppetlabs-concat.git
+    firewalld: https://github.com/simp/pupmod-voxpupuli-firewalld.git
+    iptables: https://github.com/simp/pupmod-simp-iptables.git
+    simp_options: https://github.com/simp/pupmod-simp-simp_options.git
+    simp_firewalld: https://github.com/simp/pupmod-simp-simp_firewalld.git
+    simplib: https://github.com/simp/pupmod-simp-simplib.git
+    stdlib: https://github.com/simp/puppetlabs-stdlib.git
+    tcpwrappers: https://github.com/simp/pupmod-simp-tcpwrappers.git
   symlinks:
     xinetd: "#{source_dir}"
