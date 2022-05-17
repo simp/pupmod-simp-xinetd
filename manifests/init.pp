@@ -66,6 +66,7 @@ class xinetd (
 
   $_only_from = simplib::nets2cidr($trusted_nets)
 
+### The module should not be managing the files when $package_ensure == 'absent'.
   file { '/etc/xinetd.conf':
     owner   => 'root',
     group   => 'root',
@@ -75,6 +76,7 @@ class xinetd (
     require => Package['xinetd']
   }
 
+### The module should not be managing xinetd files when $package_ensure == 'absent'.
   file { '/etc/xinetd.d':
     ensure  => 'directory',
     owner   => 'root',
@@ -89,6 +91,7 @@ class xinetd (
     ensure => $package_ensure
   }
 
+### The module should not be managing the services when $package_ensure == 'absent'.
   service { 'xinetd':
     ensure    => 'running',
     enable    => true,
