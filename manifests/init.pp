@@ -58,42 +58,44 @@ class xinetd (
   String[1]                       $package_ensure = simplib::lookup('simp_options::package_ensure', { 'default_value' => 'installed' }),
 ) {
 
-  #TODO Fix the inconsistent use of strings versus arrays.  Some of these
-  # config items are strings that contain a space-separated list of items.
-  xinetd::validate_log_type($log_type)
-  if $x_bind  { simplib::validate_net_list($x_bind) }
-  if $no_access { simplib::validate_net_list($no_access) }
-
-  $_only_from = simplib::nets2cidr($trusted_nets)
-
-  file { '/etc/xinetd.conf':
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0600',
-    content => template('xinetd/xinetd.conf.erb'),
-    notify  => [ Service['xinetd'] ],
-    require => Package['xinetd']
-  }
-
-  file { '/etc/xinetd.d':
-    ensure  => 'directory',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
-    recurse => true,
-    purge   => $purge,
-    require => Package['xinetd']
-  }
-
   package { 'xinetd':
     ensure => $package_ensure
   }
 
-  service { 'xinetd':
-    ensure    => 'running',
-    enable    => true,
-    hasstatus => true,
-    restart   => '( /bin/ps -C xinetd && /sbin/service xinetd reload ) || /sbin/service xinetd start',
-    require   => Package['xinetd']
+  unless $package_ensure == 'absent' {
+    #TODO Fix the inconsistent use of strings versus arrays.  Some of these
+    # config items are strings that contain a space-separated list of items.
+    xinetd::validate_log_type($log_type)
+    if $x_bind  { simplib::validate_net_list($x_bind) }
+    if $no_access { simplib::validate_net_list($no_access) }
+
+    $_only_from = simplib::nets2cidr($trusted_nets)
+
+    file { '/etc/xinetd.conf':
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0600',
+      content => template('xinetd/xinetd.conf.erb'),
+      notify  => [ Service['xinetd'] ],
+      require => Package['xinetd']
+    }
+
+    file { '/etc/xinetd.d':
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0640',
+      recurse => true,
+      purge   => $purge,
+      require => Package['xinetd']
+    }
+
+    service { 'xinetd':
+      ensure    => 'running',
+      enable    => true,
+      hasstatus => true,
+      restart   => '( /bin/ps -C xinetd && /sbin/service xinetd reload ) || /sbin/service xinetd start',
+      require   => Package['xinetd']
+    }
   }
 }

@@ -20,7 +20,7 @@ shared_examples_for 'a xinetd class' do
 end
 
 describe 'xinetd' do
- context 'supported operating systems' do
+  context 'with supported operating systems' do
     on_supported_os.each do |os, facts|
       context "on #{os}" do
         let(:facts) do
@@ -103,6 +103,15 @@ includedir /etc/xinetd.d
 EOM
             })
           end
+        end
+
+        context 'when uninstalling the package' do
+          let(:params) { { :package_ensure => 'absent' } }
+
+          it { is_expected.to contain_package('xinetd').with_ensure('absent') }
+          it { is_expected.to_not contain_file('/etc/xinetd.conf') }
+          it { is_expected.to_not contain_file('/etc/xinetd.d') }
+          it { is_expected.to_not contain_service('xinetd') }
         end
       end
     end

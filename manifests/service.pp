@@ -110,62 +110,64 @@ define xinetd::service (
   Boolean                           $firewall       = simplib::lookup('simp_options::firewall', { 'default_value' => false }),
   Boolean                           $tcpwrappers    = simplib::lookup('simp_options::tcpwrappers', { 'default_value' => false })
 ) {
-  xinetd::validate_log_type($log_type)
-
-  if ($redirect_ip and $redirect_port) { simplib::validate_net_list("${redirect_ip}:${redirect_port}") }
-  if $x_bind                           { simplib::validate_net_list($x_bind) }
-
-  $_only_from = simplib::nets2cidr($trusted_nets)
-
   include 'xinetd'
 
-  file { "/etc/xinetd.d/${name}":
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
-    content => template('xinetd/xinetd.service.erb'),
-    notify  => Service['xinetd']
-  }
+  unless $xinetd::package_ensure == 'absent' {
 
-  if $firewall {
-    simplib::assert_optional_dependency($module_name, 'simp/iptables')
+    xinetd::validate_log_type($log_type)
 
-    include 'iptables'
-    case $protocol {
-      'tcp':  {
-        iptables::listen::tcp_stateful { "allow_${name}":
-          order        => 11,
-          trusted_nets => $trusted_nets,
-          dports       => $port
+    if ($redirect_ip and $redirect_port) { simplib::validate_net_list("${redirect_ip}:${redirect_port}") }
+    if $x_bind                           { simplib::validate_net_list($x_bind) }
+
+    $_only_from = simplib::nets2cidr($trusted_nets)
+
+    file { "/etc/xinetd.d/${name}":
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0640',
+      content => template('xinetd/xinetd.service.erb'),
+      notify  => Service['xinetd']
+    }
+
+    if $firewall {
+      simplib::assert_optional_dependency($module_name, 'simp/iptables')
+
+      include 'iptables'
+      case $protocol {
+        'tcp':  {
+          iptables::listen::tcp_stateful { "allow_${name}":
+            order        => 11,
+            trusted_nets => $trusted_nets,
+            dports       => $port
+          }
+        }
+        'udp':  {
+          iptables::listen::udp { "allow_${name}":
+            order        => 11,
+            trusted_nets => $trusted_nets,
+            dports       => $port
+          }
+        }
+        default:  {
         }
       }
-      'udp':  {
-        iptables::listen::udp { "allow_${name}":
-          order        => 11,
-          trusted_nets => $trusted_nets,
-          dports       => $port
+    }
+
+    if $tcpwrappers {
+      simplib::assert_optional_dependency($module_name, 'simp/tcpwrappers')
+
+      include 'tcpwrappers'
+
+      if $libwrap_name {
+        tcpwrappers::allow { $libwrap_name:
+          pattern => $trusted_nets
         }
       }
-      default:  {
+      else  {
+        tcpwrappers::allow { $name:
+          pattern => $trusted_nets
+        }
       }
     }
   }
-
-  if $tcpwrappers {
-    simplib::assert_optional_dependency($module_name, 'simp/tcpwrappers')
-
-    include 'tcpwrappers'
-
-    if $libwrap_name {
-      tcpwrappers::allow { $libwrap_name:
-        pattern => $trusted_nets
-      }
-    }
-    else  {
-      tcpwrappers::allow { $name:
-        pattern => $trusted_nets
-      }
-    }
-  }
-
 }
