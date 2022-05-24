@@ -50,9 +50,22 @@ service tftp
 
 EOM
             })
+
           end
+
           it { is_expected.to_not contain_class('iptables') }
           it { is_expected.to_not contain_class('tcpwrappers') }
+
+          context 'when uninstalling the package' do
+            let(:pre_condition){
+              <<-PRECOND
+                class { 'xinetd': package_ensure => 'absent' }
+              PRECOND
+            }
+
+            it { is_expected.to compile.with_all_deps }
+            it { is_expected.to_not contain_file('/etc/xinetd.d/tftp') }
+          end
         end
 
         context 'optional parameters set' do

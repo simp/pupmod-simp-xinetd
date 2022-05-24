@@ -349,6 +349,7 @@ pup6.x-fips:
   <<: *acceptance_base
   script:
     - 'BEAKER_fips=yes bundle exec rake beaker:suites[default,default]'
+  timeout: 2h
 
 pup6.pe:
   <<: *pup_6_pe
@@ -367,6 +368,7 @@ pup6.pe-fips:
   <<: *acceptance_base
   script:
     - 'BEAKER_fips=yes bundle exec rake beaker:suites[default,default]'
+  timeout: 2h
 
 pup7.x:
   <<: *pup_7_x
