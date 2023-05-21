@@ -8,13 +8,8 @@ fixtures:
     iptables: https://github.com/simp/pupmod-simp-iptables.git
     simp_options: https://github.com/simp/pupmod-simp-simp_options.git
     simp_firewalld: https://github.com/simp/pupmod-simp-simp_firewalld.git
-    stdlib: 
-      repo: https://github.com/rgardner4012/puppetlabs-stdlib.git
-      branch: puppet8
+    simplib: https://github.com/simp/pupmod-simp-simplib.git
+    stdlib: https://github.com/simp/puppetlabs-stdlib.git
     tcpwrappers: https://github.com/simp/pupmod-simp-tcpwrappers.git
-    simplib: 
-      repo: https://github.com/rgardner4012/pupmod-simp-simplib.git
-      branch: puppet8
-    
   symlinks:
     xinetd: "#{source_dir}"
