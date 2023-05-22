@@ -1,3 +1,8 @@
+* Wed May 10 2023 Richard Gardner <Rick@sicura.us> - 4.3.2
+- Removed support for puppet 6
+- Rolled existing tests from puppet 6 to 7, 7 to 8
+- Bumped puppet version to support 8 in metadata.json
+
 * Fri May 20 2022 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.3.1
 - Ensure that the module does not manage files if the package is being removed
 

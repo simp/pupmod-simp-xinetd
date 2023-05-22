@@ -1,6 +1,6 @@
 {
   "name": "simp-xinetd",
-  "version": "4.3.1",
+  "version": "4.3.2",
   "author": "SIMP Team",
   "summary": "Manages xinetd",
   "license": "Apache-2.0",
@@ -59,7 +59,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.22.1 < 8.0.0"
+      "version_requirement": ">= 6.22.1 < 9.0.0"
     }
   ]
 }
