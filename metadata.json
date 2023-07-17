@@ -1,6 +1,6 @@
 {
   "name": "simp-xinetd",
-  "version": "4.3.2",
+  "version": "4.4.0",
   "author": "SIMP Team",
   "summary": "Manages xinetd",
   "license": "Apache-2.0",
@@ -14,7 +14,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 6.6.0 < 8.0.0"
+      "version_requirement": ">= 8.0.0 < 9.0.0"
     },
     {
       "name": "simp/simplib",
@@ -52,6 +52,12 @@
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
         "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
         "8"
       ]
     }

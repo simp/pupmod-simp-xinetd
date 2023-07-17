@@ -1,3 +1,6 @@
+* Mon Jul 10 2023 Chris Tessmer <chris.tessmer@onyxpoint.com> - 4.4.0
+- Add RockyLinux 8 support
+
 * Wed May 10 2023 Richard Gardner <Rick@sicura.us> - 4.3.2
 - Removed support for puppet 6
 - Rolled existing tests from puppet 6 to 7, 7 to 8
