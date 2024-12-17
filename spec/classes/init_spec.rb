@@ -4,16 +4,16 @@ shared_examples_for 'a xinetd class' do
   it { is_expected.to create_class('xinetd') }
   it do
     is_expected.to contain_file('/etc/xinetd.d').with({
-      'ensure'  => 'directory',
+                                                        'ensure' => 'directory',
       'owner'   => 'root',
       'group'   => 'root',
       'mode'    => '0640',
       'purge'   => 'false',
       'recurse' => 'true'
-    })
+                                                      })
   end
   it { is_expected.to contain_service('xinetd') }
-  it { is_expected.to contain_package('xinetd').with({:ensure => 'installed'}) }
+  it { is_expected.to contain_package('xinetd').with({ ensure: 'installed' }) }
   it { is_expected.to contain_package('xinetd').that_comes_before('Service[xinetd]') }
   it { is_expected.to contain_package('xinetd').that_comes_before('File[/etc/xinetd.conf]') }
   it { is_expected.to contain_package('xinetd').that_comes_before('File[/etc/xinetd.d]') }
@@ -28,14 +28,14 @@ describe 'xinetd' do
         end
 
         context 'default parameters' do
-          it_should_behave_like 'a xinetd class'
+          it_behaves_like 'a xinetd class'
 
           it do
             is_expected.to contain_file('/etc/xinetd.conf').with({
-              :owner   => 'root',
-              :group   => 'root',
-              :mode    => '0600',
-              :content => <<-EOM
+                                                                   owner: 'root',
+              group: 'root',
+              mode: '0600',
+              content: <<-EOM
 defaults
 {
   log_type       = SYSLOG authpriv
@@ -50,32 +50,35 @@ defaults
 
 includedir /etc/xinetd.d
 EOM
-            })
+                                                                 })
           end
         end
 
         context 'optional parameters set' do
-          let(:params) {{
-            :x_bind         => '1.2.3.6',
-            :per_source     => 'UNLIMITED',
-            :x_umask        => '0700',
-            :trusted_nets   => ['1.2.3.0/24', '10.0.2.5', '2001:db8:a::/64'],
-            :no_access      => ['1.2.3.4', '2.3.4.5'],
-            :passenv        => 'SOMEENVVAR1 SOMENVVAR2',
-            :disabled       => ['some_disabled_id1', 'some_disabled_id2'],
-            :disable        => 'yes',
-            :enabled        => ['some_enabled_d1', 'some_enabled_id2'],
-            :banner_success => '/some/banner_success.txt',
-            :banner_fail    => '/some/banner_fail.txt',
-            :max_load       => 2.5,
-          }}
-          it_should_behave_like 'a xinetd class'
+          let(:params) do
+            {
+              x_bind: '1.2.3.6',
+           per_source: 'UNLIMITED',
+           x_umask: '0700',
+           trusted_nets: ['1.2.3.0/24', '10.0.2.5', '2001:db8:a::/64'],
+           no_access: ['1.2.3.4', '2.3.4.5'],
+           passenv: 'SOMEENVVAR1 SOMENVVAR2',
+           disabled: ['some_disabled_id1', 'some_disabled_id2'],
+           disable: 'yes',
+           enabled: ['some_enabled_d1', 'some_enabled_id2'],
+           banner_success: '/some/banner_success.txt',
+           banner_fail: '/some/banner_fail.txt',
+           max_load: 2.5,
+            }
+          end
+
+          it_behaves_like 'a xinetd class'
           it do
             is_expected.to contain_file('/etc/xinetd.conf').with({
-              :owner   => 'root',
-              :group   => 'root',
-              :mode    => '0600',
-              :content => <<-EOM
+                                                                   owner: 'root',
+              group: 'root',
+              mode: '0600',
+              content: <<-EOM
 defaults
 {
   log_type       = SYSLOG authpriv
@@ -101,17 +104,17 @@ defaults
 
 includedir /etc/xinetd.d
 EOM
-            })
+                                                                 })
           end
         end
 
         context 'when uninstalling the package' do
-          let(:params) { { :package_ensure => 'absent' } }
+          let(:params) { { package_ensure: 'absent' } }
 
           it { is_expected.to contain_package('xinetd').with_ensure('absent') }
-          it { is_expected.to_not contain_file('/etc/xinetd.conf') }
-          it { is_expected.to_not contain_file('/etc/xinetd.d') }
-          it { is_expected.to_not contain_service('xinetd') }
+          it { is_expected.not_to contain_file('/etc/xinetd.conf') }
+          it { is_expected.not_to contain_file('/etc/xinetd.d') }
+          it { is_expected.not_to contain_service('xinetd') }
         end
       end
     end
