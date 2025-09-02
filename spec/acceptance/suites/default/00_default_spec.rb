@@ -6,26 +6,23 @@ describe 'xinetd' do
   hosts.each do |_host|
     let(:manifest) do
       <<~EOF
-      xinetd::service { 'uptime':
-        server         => '/usr/bin/uptime',
-        port           => 12345,
-        protocol       => 'tcp',
-        user           => 'nobody',
-        x_type         => 'UNLISTED',
-        x_wait         => 'no',
-        socket_type    => 'stream',
-        trusted_nets   => ['ALL']
-      }
+        xinetd::service { 'uptime':
+          server         => '/usr/bin/uptime',
+          port           => 12345,
+          protocol       => 'tcp',
+          user           => 'nobody',
+          x_type         => 'UNLISTED',
+          x_wait         => 'no',
+          socket_type    => 'stream',
+          trusted_nets   => ['ALL'],
+        }
       EOF
     end
     let(:hieradata) do
       {
         'iptables::ports' => { 22 => { 'proto' => 'tcp', 'trusted_nets' => ['ALL'] } },
-      'simp_options::firewall' => true,
+        'simp_options::firewall' => true,
       }
-    end
-
-    hosts.each do |host|
     end
 
     hosts.each do |host|
