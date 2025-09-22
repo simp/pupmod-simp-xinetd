@@ -11,7 +11,7 @@ Puppet::Functions.create_function(:'xinetd::validate_log_type') do
     required_param 'String', :log_type
   end
 
-  def validate_log_type(log_type)
+  def validate_log_type(log_type) # rubocop:disable Naming/PredicateMethod
     log_args = log_type.split
     if log_args[0] == 'SYSLOG'
       unless (log_args.length == 2) || (log_args.length == 3)

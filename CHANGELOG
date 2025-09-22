@@ -1,3 +1,6 @@
+* Mon Sep 22 2025 Steven Pritchard <steve@sicura.us> - 4.8.2
+- Cleanup for latest rubocop
+
 * Tue Jun 10 2025 Chris Tessmer <chris.tessmer@onyxpoint.com> - 4.8.1
 - Fix rubocop issues
 

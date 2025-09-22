@@ -1,6 +1,6 @@
 {
   "name": "simp-xinetd",
-  "version": "4.8.1",
+  "version": "4.8.2",
   "author": "SIMP Team",
   "summary": "Manages xinetd",
   "license": "Apache-2.0",
